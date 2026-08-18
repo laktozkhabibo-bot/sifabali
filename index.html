@@ -1,4 +1,20 @@
-<title>خَتمَاتْ</title>
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<!-- ══ الشاشة الصغيرة ══
+     بلا هذا السطر يفترض الهاتفُ أنّ الصفحة مصمَّمةٌ لشاشةِ حاسوبٍ عرضُها
+     ٩٨٠ نقطة، فيرسمها بذلك العرض ثمّ **يُصغّرها** لتدخل في شاشته — فتخرج
+     الصفحةُ كلُّها مصغَّرةً لا تُقرأ إلّا بالتكبير بالإصبعين. وهذا ما كان.
+     و`viewport-fit=cover` يمدّها تحت شقّ الكاميرا وشريطِ الإيماءة، ثمّ
+     تُردّ الحواشي بـ`env(safe-area-inset-*)` في التنسيق. -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="خَتمَاتْ — مصحف المدينة كاملًا بخطّه المطبوع، وختمات فردية وجماعية تُقسَّم فيها الأجزاء الثلاثون بينكم. مجّاني، بلا حساب ولا إعلانات، ويعمل بلا إنترنت.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="خَتمَاتْ — اقرأوا القرآن معًا">
+<meta property="og:description" content="مصحف المدينة بخطّه المطبوع، وكودٌ من أحد عشر محرفًا يجمعك بمن تحبّ على ختمة واحدة.">
+<meta property="og:type" content="website">
+<title>خَتمَاتْ — اقرأوا القرآن معًا</title>
 
 <!-- أيقونة التبويبة: أيقونة التطبيق نفسها، مضمَّنة في الصفحة فلا تحتاج
      ملفًّا خارجيًّا ولا تنكسر أينما رُفعت. مقاسان للشاشات العادية
@@ -67,7 +83,12 @@
 }
 
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{
+  scroll-behavior:smooth;
+  /* الترويسةُ لاصقةٌ أعلى الشاشة، فلولا هذا وقع العنوانُ المقصودُ تحتها
+     عند القفز إلى وصلةٍ داخلية */
+  scroll-padding-top:4.5rem;
+}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
@@ -159,7 +180,8 @@ html.theme-anim::view-transition-new(root){
 @media(max-width:760px){
   .bar nav{display:none}
   .bar img{height:2rem}
-  .theme-btn{width:2.2rem;height:2.2rem}
+  /* هدفُ لمسٍ لا يقلّ عن أربعين نقطة — إصبعٌ لا مؤشّر */
+  .theme-btn{width:2.5rem;height:2.5rem}
 }
 
 /* ══ الافتتاح ══ */
@@ -237,48 +259,6 @@ section{padding-block:clamp(3rem,7vw,5rem)}
 .feat p{font-size:.88rem;color:var(--ink-2);line-height:1.8}
 .feat .ico{width:2.4rem;height:2.4rem;margin-bottom:.9rem;display:block}
 
-/* ══ معاينات الشاشات ══ */
-.shots{display:grid;gap:clamp(1.4rem,3vw,2.2rem);grid-template-columns:repeat(auto-fit,minmax(14rem,1fr))}
-.shot{margin:0}
-.shot img{
-  display:block;width:100%;height:auto;
-  border-radius:1.1rem;border:1px solid var(--rule);
-  box-shadow:var(--shadow-lg);background:var(--raise);
-}
-.shot figcaption{font-size:.82rem;color:var(--ink-3);margin-top:.9rem;text-align:center}
-.phone{
-  margin-inline:auto;width:100%;max-width:17rem;aspect-ratio:9/19;
-  background:var(--raise);border:8px solid var(--ink);border-radius:2.2rem;
-  box-shadow:var(--shadow-lg);overflow:hidden;position:relative;
-  display:flex;flex-direction:column;
-}
-.p-top,.p-bot{background:var(--read);color:var(--olive-deep);flex:none;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:.42rem .6rem;font-size:.5rem;font-weight:600}
-.p-bot{justify-content:center;gap:.7rem}
-.p-body{flex:1;overflow:hidden;padding:.55rem;display:flex;flex-direction:column;gap:.3rem}
-.p-line{height:.42rem;border-radius:999px;background:var(--rule);opacity:.85}
-.p-line.s{width:62%} .p-line.m{width:84%} .p-line.xs{width:44%}
-.p-banner{border:1.2px solid var(--clay);border-radius:999px;height:1.3rem;margin:.3rem 0;
-  display:grid;place-items:center;font-size:.46rem;color:var(--clay-deep);font-weight:700}
-.p-bism{width:60%;margin:.35rem auto .5rem}
-.p-nav{display:flex;background:var(--card);border-top:1px solid var(--rule);flex:none}
-.p-nav div{flex:1;display:grid;place-items:center;padding:.34rem 0;gap:.12rem}
-.p-nav img{width:.85rem;height:.85rem}
-.p-nav span{font-size:.36rem;color:var(--ink-3)}
-.p-card{background:var(--card);border:1px solid var(--rule);border-radius:.55rem;padding:.45rem;display:flex;flex-direction:column;gap:.28rem}
-.p-strip{height:.2rem;border-radius:999px;background:var(--clay)}
-.p-title{font-size:.5rem;font-weight:700}
-.p-sub{font-size:.4rem;color:var(--ink-3)}
-.p-bar{height:.28rem;border-radius:999px;background:var(--rule);overflow:hidden}
-.p-bar i{display:block;height:100%;background:var(--clay)}
-.p-jz{display:grid;grid-template-columns:repeat(3,1fr);gap:.26rem;margin-top:.2rem}
-.p-jz b{aspect-ratio:1.05;border:1px solid var(--rule);border-radius:.35rem;display:grid;place-items:center;font-size:.5rem;font-weight:700;color:var(--ink-3)}
-.p-jz b.mine{background:var(--clay);border-color:var(--clay);color:#FFF7F0}
-.p-jz b.done{background:var(--olive);border-color:var(--olive);color:#FBFDF6}
-.p-code{border:1px dashed var(--clay);border-radius:.4rem;text-align:center;
-  font-size:.52rem;letter-spacing:.16em;color:var(--clay-deep);padding:.3rem;font-weight:700}
-
 /* ══ الدليل ══ */
 .guide{display:grid;gap:clamp(2rem,4vw,3rem)}
 @media(min-width:900px){.guide{grid-template-columns:15rem 1fr;align-items:start}}
@@ -321,6 +301,105 @@ th,td{text-align:right;padding:.6rem .7rem;border-bottom:1px solid var(--rule);v
 th{color:var(--ink);font-weight:700;font-size:.82rem}
 td{color:var(--ink-2)}
 
+
+/* ════════════════════════════════════════════════════════════════════
+   نسخةُ الهاتف
+   ════════════════════════════════════════════════════════════════════
+
+   الصفحةُ كانت تُرسم بعرض ٩٨٠ نقطةً ثمّ تُصغَّر (لا وسمَ `viewport`)،
+   فتخرج كلُّها مصغَّرةً لا تُقرأ إلّا بالتكبير بالإصبعين. صُحّح ذلك في
+   الرأس، وهذا ما يليه: مقاساتٌ ومساحاتٌ وأهدافُ لمسٍ تليق بالإصبع لا
+   بالفأرة. */
+
+/* لا يكبّر iOS النصَّ من تلقائه عند الدوران */
+html{ -webkit-text-size-adjust:100% }
+
+/* حواشي النظام: شقُّ الكاميرا أعلى، وشريطُ الإيماءة أسفل */
+header{ padding-top:env(safe-area-inset-top) }
+.wrap{
+  padding-inline-start:max(clamp(1.1rem,4vw,2.5rem), env(safe-area-inset-right));
+  padding-inline-end:max(clamp(1.1rem,4vw,2.5rem), env(safe-area-inset-left));
+}
+
+/* أهدافُ اللمس: أربعٌ وأربعون نقطةً حدٌّ أدنى — إصبعٌ لا مؤشّر */
+.btn{ min-height:2.9rem }
+.juz{ min-height:2.75rem }
+
+@media(max-width:760px){
+  /* الافتتاح: سطرٌ واحدٌ للعنوان بلا كسرٍ مفروض، ومسافاتٌ أضيق */
+  .hero{ padding-block:2.2rem 1.6rem }
+  .hero h1{ font-size:clamp(2.1rem,10vw,2.9rem); line-height:1.18 }
+  .hero h1 br{ display:none }
+  .hero .lede{ font-size:1rem; line-height:1.8; margin-top:.9rem }
+  .cta-row{ margin-top:1.4rem; gap:.6rem }
+  /* زرّان بعرض الشاشة: أسهلُ إصابةً من زرّين متجاورين ضيّقين */
+  .cta-row .btn{ flex:1 1 100%; justify-content:center }
+  .meta{ text-align:center }
+
+  section{ padding-block:2.6rem }
+  .sec-head{ margin-bottom:1.5rem }
+  .sec-head h2{ font-size:1.5rem }
+
+  .juz-panel{ padding:1rem; border-radius:1.15rem }
+  .juz-grid{ gap:.35rem }
+  .juz{ font-size:.9rem }
+  .legend{ gap:.7rem; font-size:.74rem }
+
+  .features{ gap:.75rem }
+  .feat{ padding:1.15rem 1.1rem }
+
+  article h3{ font-size:1.12rem; margin-top:1.9rem }
+  article p,article ul,article ol{ font-size:.95rem }
+  .steps li{ padding-inline-start:2.4rem }
+
+  /* فهرسُ الدليل: صفٌّ واحدٌ يُسحب بالإصبع، لا جدارٌ من اثني عشر رابطًا */
+  .toc{
+    display:flex; flex-wrap:nowrap; overflow-x:auto; gap:.4rem;
+    padding-bottom:.9rem; margin-inline:-1rem; padding-inline:1rem;
+    scroll-snap-type:x proximity; -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  .toc::-webkit-scrollbar{ display:none }
+  .toc a{
+    flex:none; scroll-snap-align:start; white-space:nowrap;
+    border:1px solid var(--rule); border-radius:999px;
+    padding:.5rem .9rem; border-inline-start:1px solid var(--rule);
+  }
+  .toc a:hover{ border-color:var(--clay) }
+
+  /* الجداول: تُسحب أفقيًّا، ويُعلَم أنّها تُسحب */
+  .tw{ margin-inline:-1rem; padding-inline:1rem }
+  th,td{ padding:.55rem .5rem }
+
+  footer{ padding-bottom:calc(2.6rem + env(safe-area-inset-bottom) + 4.2rem) }
+  .foot{ justify-content:center; text-align:center }
+}
+
+@media(max-width:360px){
+  .juz-grid{ grid-template-columns:repeat(5,1fr) }
+  .hero h1{ font-size:2rem }
+}
+
+/* ══ شريطُ التنزيل السفليّ — للهاتف وحده ══
+   في الهاتف لا قائمةَ في الترويسة (لا تسعها)، فيبقى الزائرُ بلا طريقٍ
+   إلى التنزيل إلّا أن يمرّ بالصفحة كلّها. فهذا شريطٌ يظهر بعد أن يتجاوز
+   الافتتاح، ويغيب إذا بلغ قسمَ التنزيل نفسه — فلا يحجب ما جاء من أجله. */
+.dock{
+  position:fixed; inset-inline:0; bottom:0; z-index:60;
+  display:none; gap:.6rem; align-items:center;
+  padding:.7rem clamp(1.1rem,4vw,2.5rem);
+  padding-bottom:calc(.7rem + env(safe-area-inset-bottom));
+  background:color-mix(in srgb,var(--ground) 92%,transparent);
+  backdrop-filter:blur(14px);
+  border-top:1px solid var(--rule);
+  transform:translateY(110%); transition:transform .28s cubic-bezier(.32,.72,.28,1);
+}
+.dock.on{ transform:none }
+.dock .btn{ flex:1; justify-content:center; padding-block:.75rem }
+.dock .dock-note{ font-size:.72rem; color:var(--ink-3); flex:none }
+@media(max-width:760px){ .dock{ display:flex } }
+@media (prefers-reduced-motion:reduce){ .dock{ transition:none } }
+
 /* ══ التذييل ══ */
 footer{border-top:1px solid var(--rule);padding-block:2.6rem 3.4rem;background:var(--raise)}
 .foot{display:flex;flex-wrap:wrap;gap:1.4rem;align-items:center;justify-content:space-between}
@@ -328,6 +407,9 @@ footer{border-top:1px solid var(--rule);padding-block:2.6rem 3.4rem;background:v
 .sig{font-size:.9rem;color:var(--ink-2)}
 .sig b{color:var(--clay);font-weight:700}
 </style>
+</head>
+
+<body>
 
 <header>
   <div class="wrap bar">
@@ -360,7 +442,7 @@ footer{border-top:1px solid var(--rule);padding-block:2.6rem 3.4rem;background:v
     <div class="hero-grid">
       <div>
         <p class="eyebrow">مصحف المدينة · ختمات فردية وجماعية</p>
-        <h1>اقرأوا القرآن<br>معًا.</h1>
+        <h1>اقرأوا القرآن <br>معًا.</h1>
         <p class="lede">
           ثلاثون جزءًا تُقسَّم بينكم، وكل صفحة تقرأها تُسجَّل باسمك.
           مصحف المدينة بخطّه المطبوع، وكود من أحد عشر محرفًا يجمعك بمن تحبّ
@@ -425,35 +507,11 @@ footer{border-top:1px solid var(--rule);padding-block:2.6rem 3.4rem;background:v
         </div>
         <div class="feat">
           <img class="ico" src="data:image/png;base64,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" alt="">
-          <h3>يعمل بلا إنترنت</h3>
-          <p>ما قرأته مرّة يبقى في جهازك. ونزّل المصحف كاملًا أو تلاوة قارئٍ
-             بأكملها، فتقرأ وتستمع في الطائرة وفي الصحراء.</p>
+          <h3>المصحف بلا إنترنت</h3>
+          <p>الصفحات الستّمئة وأربع ونصُّها وخطوطُها <strong>مضمَّنة في
+             التطبيق</strong> — لا تُنزَّل ولا تُنتظر. تفتحه بعد التثبيت فتقرأ
+             ولو كنتَ في طائرة.</p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- معاينات -->
-  <section style="background:var(--raise);border-block:1px solid var(--rule)">
-    <div class="wrap">
-      <div class="sec-head col">
-        <p class="eyebrow">من داخل التطبيق</p>
-        <h2>ما ستراه</h2>
-        <p>لقطات من التطبيق كما يعمل على الهاتف.</p>
-      </div>
-      <div class="shots">
-        <figure class="shot">
-          <img src="image1.jpg" alt="صفحة من المصحف" loading="lazy" decoding="async">
-          <figcaption>المصحف — صفحة كاملة بخطّها المطبوع</figcaption>
-        </figure>
-        <figure class="shot">
-          <img src="image2.jpg" alt="صفحة فيها طُرَّة سورة وبسملة" loading="lazy" decoding="async">
-          <figcaption>الطُرَّة والبسملة قبل كل سورة</figcaption>
-        </figure>
-        <figure class="shot">
-          <img src="image3.jpg" alt="قِصار السور في صفحة واحدة" loading="lazy" decoding="async">
-          <figcaption>قِصار السور — ثلاث في صفحة</figcaption>
-        </figure>
       </div>
     </div>
   </section>
@@ -504,13 +562,14 @@ footer{border-top:1px solid var(--rule);padding-block:2.6rem 3.4rem;background:v
       <div class="guide">
         <nav class="toc" aria-label="فهرس الدليل">
           <a href="#g-start">أوّل تشغيل</a>
+          <a href="#g-home">الرئيسية</a>
           <a href="#g-mushaf">المصحف</a>
           <a href="#g-read">القراءة والأدوات</a>
           <a href="#g-solo">ختمة فردية</a>
           <a href="#g-group">ختمة جماعية</a>
           <a href="#g-juz">حجز الأجزاء</a>
           <a href="#g-record">تسجيل الصفحات</a>
-          <a href="#g-stats">الإحصائيات والإعدادات</a>
+          <a href="#g-stats">المشاركون</a>
           <a href="#g-audio">التلاوة</a>
           <a href="#g-offline">بلا إنترنت</a>
           <a href="#g-settings">الإعدادات</a>
@@ -525,9 +584,16 @@ footer{border-top:1px solid var(--rule);padding-block:2.6rem 3.4rem;background:v
           <p>ثمّ يسألك أندرويد إذن الإشعارات. اقبله إن أردت تذكير الوِرد
              اليومي — وإن رفضته يعمل التطبيق كاملًا بلا تذكير.</p>
           <div class="note">
-            <strong>أوّل تشغيل يحتاج إنترنت</strong> ليجلب صفحات المصحف وخطوطها.
-            بعد ذلك تبقى في جهازك ويعمل بلا اتصال.
+            <strong>لا شيء يُنزَّل عند أوّل تشغيل.</strong> المصحف كلُّه —
+            نصُّه وخطوط صفحاته — مضمَّنٌ في التطبيق، فيعمل من اللحظة الأولى
+            بلا إنترنت. ولا يحتاج الاتصالَ إلّا الختماتُ الجماعية، والبحثُ في
+            نصّ القرآن، والتفسير، والتلاواتُ التي لم تنزّلها.
           </div>
+
+          <h3 id="g-home">الصفحة الرئيسية</h3>
+          <p>فيها اسمك وصورتك، وشريطُ بحثٍ يفتح تبويب المصحف،
+             و<strong>آيةُ اليوم</strong> بخطّ صفحتها من المصحف — تضغطها فتفتح
+             عند موضعها. ثمّ بطاقةُ ختماتك، وأسفلَها أعمالُ المطوّر.</p>
 
           <h3 id="g-mushaf">المصحف</h3>
           <p>تبويب <strong>المصحف</strong> فيه فهرسٌ بثلاثة أوجه:</p>
@@ -543,8 +609,9 @@ footer{border-top:1px solid var(--rule);padding-block:2.6rem 3.4rem;background:v
              لتفتح صفحتها.</p>
 
           <h3 id="g-read">القراءة والأدوات</h3>
-          <p>الصفحة تملأ الشاشة: خمسة عشر سطرًا بخطّ الصفحة نفسه، والشريطان
-             العلوي والسفلي أخضران دائمًا.</p>
+          <p>الصفحة تملأ الشاشة: خمسة عشر سطرًا بخطّ الصفحة نفسه، وشريطان
+             نحيلان أخضران — أعلى الصفحة وأسفلها لا فوقها — فلا يُغطّى حرفٌ
+             واحد. وضغطةٌ على الصفحة تطويهما فتخلو الشاشة للمصحف وحده.</p>
           <div class="tw"><table>
             <thead><tr><th>ما تفعله</th><th>ما يحدث</th></tr></thead>
             <tbody>
@@ -558,14 +625,18 @@ footer{border-top:1px solid var(--rule);padding-block:2.6rem 3.4rem;background:v
           </table></div>
 
           <h3 id="g-solo">ختمة فردية</h3>
-          <p>من تبويب <strong>الختمات</strong> اضغط <strong>ختمة جديدة</strong>،
-             وسمِّها، واختر <strong>فردية</strong>. الأجزاء الثلاثون كلّها لك،
-             — أنت وختمتك فقط.</p>
+          <p>من تبويب <strong>الختمات</strong> اضغط <strong>+</strong>، وسمِّها،
+             والنوعُ <strong>فردية</strong> ابتداءً. الأجزاء الثلاثون كلّها لك —
+             أنت وختمتك فقط، وتعمل بلا إنترنت.</p>
           <p>اضغط أيّ جزء ليفتح المصحف عند <strong>أوّل صفحة لم تقرأها</strong> منه.</p>
 
           <h3 id="g-group">ختمة جماعية</h3>
           <p>اختر <strong>جماعية</strong> عند الإنشاء، فتحصل على
              <strong>كود من أحد عشر محرفًا</strong> — حروف وأرقام، عشوائي ولا يتكرّر.</p>
+          <p>والجماعيّةُ وحدها تحتاج اتصالًا: يفحص التطبيقُ خادمَ الختمات
+             <strong>عند فتح الورقة</strong> فيقول لك حالَه قبل أن تضغط. فإن
+             تعذّر الوصول لم يُنشئ ختمةً بكودٍ لا وجود له عند أحد، بل كتب لك
+             السبب واقترح عليك ختمةً فردية.</p>
           <ol class="steps">
             <li>اضغط زرّ المشاركة بجانب الكود، فتُرسله بأي تطبيق: واتساب، تيليجرام، رسالة نصّية… أو انسخه بزرّ النسخ.</li>
             <li>من وصله الكود يفتح <strong>الختمات ← انضمام بكود</strong> ويُدخله.</li>
@@ -595,10 +666,10 @@ footer{border-top:1px solid var(--rule);padding-block:2.6rem 3.4rem;background:v
           <h3 id="g-record">تسجيل الصفحات — التفصيلة الأهمّ</h3>
           <p>هذا ما يميّز التطبيق، فانتبه له:</p>
           <ul>
-            <li>فتحتَ المصحف <strong>من ختمة</strong> (بالضغط على جزء) → يظهر اسم
-                الختمة في أعلى الشاشة، والضغط على <strong>رقم الصفحة</strong>
-                يسجّلها مقروءة: تخضرّ أرضيّتها، وتُحسب في تقدّمك وتقدّم جزئك
-                وإحصائيات الختمة.</li>
+            <li>فتحتَ المصحف <strong>من ختمة</strong> (بالضغط على جزء) →
+                الضغط على <strong>رقم الصفحة</strong> في الشريط السفليّ يسجّلها
+                مقروءة: تتلوّن كبسولةُ الرقم وتظهر فيها علامةُ صحّ، وتخضرّ
+                أرضيّةُ الصفحة، وتُحسب في تقدّمك وتقدّم جزئك وفي حال الختمة.</li>
             <li>فتحتَ المصحف <strong>من تبويب المصحف</strong> → الضغط على رقم
                 الصفحة <strong>لا يؤثّر بشيء</strong>، وتظهر ملاحظة تذكّرك بذلك.</li>
           </ul>
@@ -606,41 +677,53 @@ footer{border-top:1px solid var(--rule);padding-block:2.6rem 3.4rem;background:v
              <strong>بالنسبة إلى ختمة بعينها</strong>. فتستطيع أن تقرأ القرآن
              متى شئت بلا أن تعبث بإحصائيات ختماتك.</p>
 
-          <h3 id="g-stats">الإحصائيات والإعدادات</h3>
-          <p>تبويب <strong>الإحصائيات</strong> فيه لوحةُ الختمة كلّها، ثمّ بطاقةٌ
-             لكل مشارك: <strong>صورته</strong> واسمه، وكم جزءًا يخصّه، وكم صفحة
-             أنجز، ونسبته — مرتّبين بالأكثر إنجازًا.</p>
+          <h3 id="g-stats">المشاركون وإعدادات الختمة</h3>
+          <p>في أعلى صفحة الختمة ترويسةٌ واحدة تجمع حالَها: حلقةُ التقدّم
+             بنسبتها، واسمُ الختمة، وكم جزءًا حُجز، وكم نصيبُك، وكم جزءًا تمّ.</p>
+          <p>وتبويب <strong>المشاركون</strong> فيه بطاقةٌ لكلّ واحد:
+             <strong>صورته</strong> واسمه، وكم جزءًا يخصّه، وكم صفحة أنجز،
+             ونسبته — مرتّبين بالأكثر إنجازًا، وللمتصدّر نجمة.</p>
           <h4>إعدادات الختمة</h4>
-          <p>من زرّ <strong>⋮</strong> في أعلى الختمة: تغيير اسمها · تغيير اسمك
+          <p>من زرّ <strong>⋯</strong> في أعلى الختمة: تغيير اسمها · تغيير اسمك
              فيها · ترك كل أجزائك · تصفير الصفحات المقروءة · ثمّ
              <strong>حذف الختمة</strong> إن كانت فردية أو كنتَ وحدك فيها، أو
              <strong>مغادرتها</strong> إن كان معك غيرك — وحينها تُترك أجزاؤك
              للآخرين وتستطيع العودة بالكود متى شئت.</p>
 
           <h3 id="g-audio">التلاوة</h3>
-          <p>سبعة وأربعون قارئًا، والتلاوة آيةً بآية. اضغط زرّ التشغيل في شريط
-             الأدوات لتُتلى الصفحة كلّها، أو اضغط آيةً ضغطةً مطوّلة ثمّ
+          <p>ثمانيةٌ وأربعون قارئًا، والتلاوة آيةً بآية. اضغط زرّ التشغيل في
+             الشريط العلويّ لتُتلى الصفحة كلّها، أو اضغط آيةً ضغطةً مطوّلة ثمّ
              <strong>استماع</strong> لتُتلى وحدها. الآية الجارية تُظلَّل وأنت
              تسمع.</p>
-          <p>تغيير القارئ من <strong>الإعدادات ← التلاوة</strong>، ويأخذ مفعوله
-             فورًا. وتستطيع ضبط السرعة، وتكرار الصفحة.</p>
+          <p>وصفحةُ <strong>الإعدادات ← القارئ والتلاوات</strong> ثلاثةُ أقسام
+             صريحة: ما <strong>يجري تنزيله</strong> بنسبته وعدد آياته وحجمه وزرِّ
+             إلغاء، وما هو <strong>على جهازك</strong> بعدد ملفّاته وحجمه وزرِّ
+             استعمالٍ وحذف، ثمّ <strong>كلُّ القرّاء</strong> ببحثٍ وزرِّ تنزيل.</p>
+          <p>والسرعةُ وتكرارُ الآية من الإعدادات كذلك.</p>
 
           <h3 id="g-offline">العمل بلا إنترنت</h3>
-          <p>ما تقرأه مرّة يُحفظ تلقائيًا. ولتضمن العمل الكامل بلا اتصال:</p>
-          <ul>
-            <li><strong>الإعدادات ← تنزيل المصحف كاملًا</strong> — ستّمئة وأربع صفحة وخطوطها، بشريط تقدّم وقابل للإلغاء.</li>
-            <li>بجانب كل قارئ <strong>زرّ تنزيل</strong> يحفظ تلاوته للقرآن كاملًا (٦٢٣٦ آية)، ويُنبّهك بالحجم قبل أن يبدأ.</li>
-          </ul>
-          <p>والتنزيلات تعمل معًا في وقت واحد، ولا تُجمّد التطبيق أثناء عملها.</p>
+          <p><strong>المصحف كلُّه مضمَّنٌ في التطبيق</strong>: ستّمئة وأربع صفحة
+             بنصّها وخطوطها، فلا شيء يُنزَّل ولا شيء يُنتظر — وقد حُذف زرُّ
+             «تنزيل المصحف» لأنّه لم يبقَ له معنًى.</p>
+          <p>والذي يحتاج اتصالًا ثلاثة: الختماتُ الجماعية، والبحثُ في نصّ
+             القرآن والتفسير، والتلاواتُ التي لم تنزّلها بعد. ولتسمع بلا
+             اتصال: <strong>الإعدادات ← القارئ والتلاوات</strong> ثمّ
+             <strong>تنزيل</strong> بجانب القارئ — تلاوتُه للقرآن كاملًا ٦٢٣٦
+             ملفًّا، فاجعلها على واي‑فاي.</p>
+          <p>وما تقرأه وتسجّله يُحفظ في جهازك في الحال. وإن كنتَ في ختمةٍ
+             جماعية وأنت بلا شبكة، حُفظت عملياتُك وأُرسلت حين يعود الاتصال —
+             ولا تُمحى ولا تعود إلى الوراء.</p>
 
           <h3 id="g-settings">الإعدادات</h3>
           <div class="tw"><table>
             <thead><tr><th>الإعداد</th><th>ماذا يفعل</th></tr></thead>
             <tbody>
               <tr><td>إبقاء الشاشة مضاءة</td><td>لا تنطفئ الشاشة أثناء القراءة</td></tr>
-              <tr><td>القارئ والسرعة والتكرار</td><td>إعدادات التلاوة</td></tr>
-              <tr><td>تذكير الوِرد</td><td>إشعار يومي في وقت تختاره</td></tr>
-              <tr><td>العمل بلا إنترنت</td><td>تنزيل المصحف والتلاوات، ومسح المحفوظ</td></tr>
+              <tr><td>المصحف</td><td>يُخبرك أنّه مضمَّنٌ في التطبيق ويعمل بلا إنترنت</td></tr>
+              <tr><td>القارئ والتلاوات</td><td>صفحةٌ فيها المحمَّل على جهازك، وما يجري تنزيله، وكلُّ القرّاء</td></tr>
+              <tr><td>سرعة التلاوة · تكرار الآية</td><td>إعدادات السماع</td></tr>
+              <tr><td>تذكير الوِرد</td><td>إشعار يومي في وقت تختاره، وتجربةُ صوته</td></tr>
+              <tr><td>البيانات</td><td>تفريغ الذاكرة، وحذف التلاوات المحفوظة، وإعادة عرض التعريف</td></tr>
             </tbody>
           </table></div>
 
@@ -649,8 +732,9 @@ footer{border-top:1px solid var(--rule);padding-block:2.6rem 3.4rem;background:v
             <thead><tr><th>ما تراه</th><th>الحلّ</th></tr></thead>
             <tbody>
               <tr><td>«لا توجد ختمة بهذا الكود»</td><td>انسخ الكود كاملًا بلا مسافات. وتأكّد أن صاحبها أنشأها على النسخة نفسها من التطبيق.</td></tr>
-              <tr><td>لا أرى تقدّم بقيّة المشاركين</td><td>أحدكما بلا إنترنت. العمليات تُحفظ وتُرسل حين يعود الاتصال.</td></tr>
-              <tr><td>«تعذّر جلب الصفحة»</td><td>اضغط «أعد المحاولة». تُجلب الصفحات مرّة واحدة ثمّ تبقى في جهازك.</td></tr>
+              <tr><td>لا أرى تقدّم بقيّة المشاركين</td><td>أحدكما بلا إنترنت. العمليات تُحفظ وتُرسل حين يعود الاتصال، ولا يُمحى ما سجّلته.</td></tr>
+              <tr><td>لا أرى صورة أحد المشاركين</td><td>لم يضع صورةً بعد. ومن وضعها ظهرت للجميع — تُرسل صورةٌ صغيرةٌ مع بيانات الغرفة، لا مسارُ ملفٍّ على جهازه.</td></tr>
+              <tr><td>«تعذّر إنشاء الغرفة على الخادم»</td><td>الجماعيّةُ وحدها تحتاج اتصالًا. تحقّق من شبكتك وأعد المحاولة، أو أنشئ ختمةً فردية تعمل بلا إنترنت.</td></tr>
               <tr><td>الضغط على رقم الصفحة لا يسجّلها</td><td>افتح المصحف <strong>من ختمة</strong> لا من تبويب المصحف — انظر قسم التسجيل أعلاه.</td></tr>
               <tr><td>لا يصلني تذكير الوِرد</td><td>امنح إذن الإشعارات من إعدادات النظام، وأعفِ التطبيق من تقييد البطارية.</td></tr>
               <tr><td>«Play Protect» يحذّر عند التثبيت</td><td>طبيعي لكل تطبيق خارج المتجر. اختر «التثبيت على أي حال».</td></tr>
@@ -680,12 +764,25 @@ footer{border-top:1px solid var(--rule);padding-block:2.6rem 3.4rem;background:v
         <h4>كم مشاركًا في الختمة الواحدة؟</h4>
         <p>حتى ستّين. والأجزاء ثلاثون، فيستطيع أكثر من واحد أن يقرأ ما ترك غيره.</p>
         <h4>من أين نصّ القرآن وخطوطه؟</h4>
-        <p>الخطوط من <strong>مجمع الملك فهد لطباعة المصحف الشريف</strong>،
-           والنصّ والتفسير من Quran.com، والتلاوات من everyayah.com.</p>
+        <p>النصّ وخطوط الصفحات من <strong>مجمع الملك فهد لطباعة المصحف
+           الشريف</strong>، وهي مضمَّنةٌ في التطبيق. والتفسير والبحث من
+           Quran.com، والتلاوات من everyayah.com.</p>
+        <h4>هل يحتاج إنترنت؟</h4>
+        <p>المصحف لا. وإنّما تحتاجه الختماتُ الجماعية، والبحثُ في نصّ القرآن
+           والتفسير، وسماعُ تلاوةٍ لم تنزّلها.</p>
       </article>
     </div>
   </section>
 </main>
+
+<!-- شريطُ التنزيل: لا يظهر إلّا في الهاتف، وبعد تجاوز الافتتاح -->
+<div class="dock" id="dock" aria-hidden="true">
+  <span class="dock-note">مجّاني · بلا حساب</span>
+  <a class="btn btn-main" href="#download">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v13M6 12l6 6 6-6M4 21h16"/></svg>
+    حمّل التطبيق
+  </a>
+</div>
 
 <footer>
   <div class="wrap foot">
@@ -745,6 +842,28 @@ footer{border-top:1px solid var(--rule);padding-block:2.6rem 3.4rem;background:v
     });
   }
 
+  // ── شريطُ التنزيل السفليّ ──
+  // يظهر بعد أن يُمرَّر الافتتاح، ويغيب عند بلوغ قسم التنزيل نفسه.
+  var dock = document.getElementById('dock');
+  var dl   = document.getElementById('download');
+  var hero = document.querySelector('.hero');
+  if(dock && dl && hero && 'IntersectionObserver' in window){
+    var pastHero = false, atDownload = false;
+    function sync(){
+      var show = pastHero && !atDownload;
+      dock.classList.toggle('on', show);
+      dock.setAttribute('aria-hidden', show ? 'false' : 'true');
+    }
+    new IntersectionObserver(function(es){
+      pastHero = !es[0].isIntersecting;
+      sync();
+    }, {rootMargin:'-40% 0px 0px 0px'}).observe(hero);
+    new IntersectionObserver(function(es){
+      atDownload = es[0].isIntersecting;
+      sync();
+    }, {threshold:0.15}).observe(dl);
+  }
+
   var grid  = document.getElementById('jz');
   var count = document.getElementById('jz-count');
   if(!grid) return;
@@ -799,3 +918,6 @@ footer{border-top:1px solid var(--rule);padding-block:2.6rem 3.4rem;background:v
 
 })();
 </script>
+
+</body>
+</html>
