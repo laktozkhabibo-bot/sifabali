@@ -1,0 +1,86 @@
+// Şifa Balı — database schema
+// Localized fields (name, description…) are stored as JSON: { "tr": "...", "en": "...", "ar": "..." }
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Category {
+  id        String    @id @default(cuid())
+  slug      String    @unique
+  name      Json
+  sortOrder Int       @default(0)
+  products  Product[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Product {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  name        Json
+  description Json
+  benefits    Json      // { tr: string[], en: string[], ar: string[] }
+  weight      String    @default("")
+  price       Decimal   @db.Decimal(10, 2)
+  salePrice   Decimal?  @db.Decimal(10, 2)
+  stock       Int       @default(0)
+  images      String[]
+  visible     Boolean   @default(true)
+  featured    Boolean   @default(false)
+  sortOrder   Int       @default(0)
+  categoryId  String?
+  category    Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([categoryId])
+  @@index([visible, featured])
+}
+
+// Key/value store for every editable site text & setting (hero, about, contact, announcement…)
+model SiteSetting {
+  key       String   @id
+  value     Json
+  updatedAt DateTime @updatedAt
+}
+
+// Single-row table holding the host panel password hash
+model AdminCredential {
+  id           Int      @id @default(1)
+  passwordHash String
+  // Incremented on every password change → invalidates all existing sessions
+  tokenVersion Int      @default(1)
+  updatedAt    DateTime @updatedAt
+}
+
+// Login rate limiting (works across serverless instances)
+model LoginAttempt {
+  key         String   @id // hashed IP
+  count       Int      @default(0)
+  windowStart DateTime @default(now())
+  lockedUntil DateTime?
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String   @default("")
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Subscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  locale    String   @default("tr")
+  createdAt DateTime @default(now())
+}

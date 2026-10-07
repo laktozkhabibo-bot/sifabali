@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-label="Balmumu Mum Seti">
+<defs>
+<radialGradient id="bg" cx="50%" cy="38%" r="75%">
+<stop offset="0%" stop-color="#3a322a"/>
+<stop offset="100%" stop-color="#1B1814"/>
+</radialGradient>
+<pattern id="hex" width="56" height="97" patternUnits="userSpaceOnUse" patternTransform="scale(0.9)">
+<path d="M28 0 L56 16 L56 48 L28 64 L0 48 L0 16 Z M28 64 L28 97 M0 48 L0 16" fill="none" stroke="#9A5A12" stroke-opacity="0.1" stroke-width="1.5"/>
+</pattern>
+<radialGradient id="shadow" cx="50%" cy="50%" r="50%">
+<stop offset="0%" stop-color="#5E3715" stop-opacity=".35"/>
+<stop offset="100%" stop-color="#5E3715" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="glass" x1="0" x2="1">
+<stop offset="0" stop-color="#fff" stop-opacity=".0"/>
+<stop offset=".12" stop-color="#fff" stop-opacity=".55"/>
+<stop offset=".22" stop-color="#fff" stop-opacity=".05"/>
+<stop offset=".85" stop-color="#fff" stop-opacity=".0"/>
+<stop offset=".93" stop-color="#fff" stop-opacity=".25"/>
+<stop offset="1" stop-color="#fff" stop-opacity="0"/>
+</linearGradient>
+</defs>
+<rect width="800" height="1000" fill="url(#bg)"/>
+<rect width="800" height="1000" fill="url(#hex)"/>
+<ellipse cx="400" cy="860" rx="250" ry="34" fill="url(#shadow)"/>
+<defs>
+<linearGradient id="wax" x1="0" x2="1"><stop offset="0" stop-color="#F6C453"/><stop offset=".5" stop-color="#FAD98A"/><stop offset="1" stop-color="#E0961A"/></linearGradient>
+<radialGradient id="flame" cx="50%" cy="70%"><stop offset="0" stop-color="#fff"/><stop offset=".45" stop-color="#FAD98A"/><stop offset="1" stop-color="#E0961A"/></radialGradient>
+<radialGradient id="halo"><stop offset="0" stop-color="#F6C453" stop-opacity=".35"/><stop offset="1" stop-color="#F6C453" stop-opacity="0"/></radialGradient>
+</defs>
+<rect x="150" y="520" width="140" height="330" rx="12" fill="url(#wax)"/>
+<g stroke="#C27612" stroke-opacity=".35" stroke-width="2"><path d="M150 540 h140"/><path d="M150 568 h140"/><path d="M150 596 h140"/><path d="M150 624 h140"/><path d="M150 652 h140"/><path d="M150 680 h140"/><path d="M150 708 h140"/><path d="M150 736 h140"/><path d="M150 764 h140"/><path d="M150 792 h140"/><path d="M150 820 h140"/></g>
+<path d="M220 520 v-26" stroke="#27231E" stroke-width="4"/>
+<path d="M220 436 C 246 470, 234 498, 220 498 C 206 498, 194 470, 220 436 Z" fill="url(#flame)"/>
+<circle cx="220" cy="474" r="70" fill="url(#halo)"/>
+<rect x="330" y="410" width="140" height="440" rx="12" fill="url(#wax)"/>
+<g stroke="#C27612" stroke-opacity=".35" stroke-width="2"><path d="M330 430 h140"/><path d="M330 458 h140"/><path d="M330 486 h140"/><path d="M330 514 h140"/><path d="M330 542 h140"/><path d="M330 570 h140"/><path d="M330 598 h140"/><path d="M330 626 h140"/><path d="M330 654 h140"/><path d="M330 682 h140"/><path d="M330 710 h140"/><path d="M330 738 h140"/><path d="M330 766 h140"/><path d="M330 794 h140"/><path d="M330 822 h140"/></g>
+<path d="M400 410 v-26" stroke="#27231E" stroke-width="4"/>
+<path d="M400 326 C 426 360, 414 388, 400 388 C 386 388, 374 360, 400 326 Z" fill="url(#flame)"/>
+<circle cx="400" cy="364" r="70" fill="url(#halo)"/>
+<rect x="510" y="590" width="140" height="260" rx="12" fill="url(#wax)"/>
+<g stroke="#C27612" stroke-opacity=".35" stroke-width="2"><path d="M510 610 h140"/><path d="M510 638 h140"/><path d="M510 666 h140"/><path d="M510 694 h140"/><path d="M510 722 h140"/><path d="M510 750 h140"/><path d="M510 778 h140"/><path d="M510 806 h140"/><path d="M510 834 h140"/></g>
+<path d="M580 590 v-26" stroke="#27231E" stroke-width="4"/>
+<path d="M580 506 C 606 540, 594 568, 580 568 C 566 568, 554 540, 580 506 Z" fill="url(#flame)"/>
+<circle cx="580" cy="544" r="70" fill="url(#halo)"/>
+<text x="400" y="940" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="34" font-weight="700" fill="#FAD98A">Balmumu Mum Seti</text>
+</svg>

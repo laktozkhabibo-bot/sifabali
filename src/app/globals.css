@@ -1,0 +1,174 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --header-h: 76px;
+    color-scheme: light;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-cream text-charcoal font-sans;
+  }
+
+  /* Arabic uses its own typeface everywhere, including headings */
+  html[lang="ar"] body {
+    font-family: var(--font-arabic), var(--font-sans), system-ui, sans-serif;
+  }
+  html[lang="ar"] .font-serif {
+    font-family: var(--font-arabic), serif;
+    letter-spacing: 0 !important;
+  }
+
+  ::selection {
+    @apply bg-honey-300 text-charcoal;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-honey-500 ring-offset-2 ring-offset-cream;
+  }
+
+}
+
+/* Lenis smooth scroll recommended styles */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+@layer components {
+  .btn {
+    @apply relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full px-7 py-3.5 text-sm font-semibold tracking-wide transition-[background-color,color,box-shadow,transform] duration-300 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply btn bg-charcoal text-cream shadow-card hover:bg-honey-600;
+  }
+  .btn-honey {
+    @apply btn bg-honey-500 text-charcoal shadow-glow hover:bg-honey-400;
+  }
+  .btn-ghost {
+    @apply btn border border-charcoal/15 bg-transparent text-charcoal hover:border-charcoal hover:bg-charcoal hover:text-cream;
+  }
+  .btn-light {
+    @apply btn border border-cream/30 bg-cream/5 text-cream backdrop-blur hover:bg-cream hover:text-charcoal;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.28em] text-honey-700;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply block h-px w-8 bg-honey-500;
+  }
+  html[lang="ar"] .eyebrow {
+    letter-spacing: 0;
+  }
+
+  .h-display {
+    @apply font-serif text-5xl font-semibold leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl xl:text-8xl;
+  }
+  .h-section {
+    @apply font-serif text-4xl font-semibold leading-tight tracking-tight md:text-5xl lg:text-6xl;
+  }
+
+  .input {
+    @apply w-full rounded-2xl border border-charcoal/10 bg-white/70 px-4 py-3.5 text-[15px] text-charcoal placeholder:text-charcoal-300 transition focus:border-honey-500 focus:bg-white focus:outline-none focus:ring-4 focus:ring-honey-500/15;
+  }
+
+  .card {
+    @apply rounded-3xl border border-charcoal/5 bg-white/70 shadow-card backdrop-blur;
+  }
+
+  .text-gradient {
+    @apply bg-honey-gradient bg-clip-text text-transparent;
+  }
+
+  /* Rich text paragraphs from the CMS */
+  .prose-honey p + p {
+    @apply mt-5;
+  }
+}
+
+@layer utilities {
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.06;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .perspective {
+    perspective: 1000px;
+  }
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+}
+
+/* Respect reduced-motion preferences globally */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Intro preloader (pure CSS, ~0.9s, first view per session only) ── */
+.sb-preloader {
+  pointer-events: none;
+  animation: sb-pre-out 0.3s ease-in 0.65s forwards;
+}
+.sb-preloader-fill {
+  transform-origin: 50% 100%;
+  animation: sb-pre-fill 0.6s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+html.sb-intro-seen .sb-preloader {
+  display: none;
+}
+@keyframes sb-pre-fill {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+@keyframes sb-pre-out {
+  to { opacity: 0; visibility: hidden; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sb-preloader { display: none; }
+}
+
+/* Bee wing flutter: swap two motion-blurred wing frames rapidly */
+.bee-flutter {
+  animation: bee-flutter 0.09s steps(1, end) infinite;
+}
+@keyframes bee-flutter {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+}

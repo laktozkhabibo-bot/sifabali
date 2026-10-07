@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-label="Propolis Damla">
+<defs>
+<radialGradient id="bg" cx="50%" cy="38%" r="75%">
+<stop offset="0%" stop-color="#F4F3E6"/>
+<stop offset="100%" stop-color="#E6E3CC"/>
+</radialGradient>
+<pattern id="hex" width="56" height="97" patternUnits="userSpaceOnUse" patternTransform="scale(0.9)">
+<path d="M28 0 L56 16 L56 48 L28 64 L0 48 L0 16 Z M28 64 L28 97 M0 48 L0 16" fill="none" stroke="#9A5A12" stroke-opacity="0.1" stroke-width="1.5"/>
+</pattern>
+<radialGradient id="shadow" cx="50%" cy="50%" r="50%">
+<stop offset="0%" stop-color="#5E3715" stop-opacity=".35"/>
+<stop offset="100%" stop-color="#5E3715" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="glass" x1="0" x2="1">
+<stop offset="0" stop-color="#fff" stop-opacity=".0"/>
+<stop offset=".12" stop-color="#fff" stop-opacity=".55"/>
+<stop offset=".22" stop-color="#fff" stop-opacity=".05"/>
+<stop offset=".85" stop-color="#fff" stop-opacity=".0"/>
+<stop offset=".93" stop-color="#fff" stop-opacity=".25"/>
+<stop offset="1" stop-color="#fff" stop-opacity="0"/>
+</linearGradient>
+</defs>
+<rect width="800" height="1000" fill="url(#bg)"/>
+<rect width="800" height="1000" fill="url(#hex)"/>
+<ellipse cx="400" cy="860" rx="250" ry="34" fill="url(#shadow)"/>
+<defs>
+<linearGradient id="amber" x1="0" x2="1"><stop offset="0" stop-color="#7A4716"/><stop offset=".5" stop-color="#9A5A12"/><stop offset="1" stop-color="#5E3715"/></linearGradient>
+</defs>
+<rect x="330" y="120" width="140" height="130" rx="60" fill="#27231E"/>
+<rect x="345" y="235" width="110" height="90" rx="10" fill="#35302A"/>
+<rect x="345" y="245" width="110" height="10" fill="#C27612"/>
+<path d="M300 340 Q300 320 330 320 L470 320 Q500 320 500 340 L520 420 L520 810 Q520 850 480 850 L320 850 Q280 850 280 810 L280 420 Z" fill="url(#amber)"/>
+<path d="M300 340 Q300 320 330 320 L470 320 Q500 320 500 340 L520 420 L520 810 Q520 850 480 850 L320 850 Q280 850 280 810 L280 420 Z" fill="url(#glass)"/>
+<rect x="300" y="500" width="200" height="220" rx="10" fill="#FBF6EC" stroke="#C27612" stroke-width="2"/>
+<path d="M400 520 l10 6 v12 l-10 6 l-10 -6 v-12 z" fill="#6F7543"/>
+<text x="400" y="600" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="34" font-weight="700" fill="#27231E">Propolis</text>
+<text x="400" y="640" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" letter-spacing="4" fill="#565C33">DAMLA · 30 ML</text>
+<text x="400" y="690" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="13" letter-spacing="3" fill="#9A5A12">ALKOLSÜZ</text>
+<ellipse cx="610" cy="780" rx="14" ry="20" fill="#9A5A12"/><path d="M610 748 l-10 20 h20z" fill="#9A5A12"/>
+<ellipse cx="660" cy="820" rx="9" ry="13" fill="#9A5A12" opacity=".7"/>
+</svg>

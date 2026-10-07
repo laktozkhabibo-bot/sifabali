@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-label="Kestane Balı">
+<defs>
+<radialGradient id="bg" cx="50%" cy="38%" r="75%">
+<stop offset="0%" stop-color="#FFF8E8"/>
+<stop offset="100%" stop-color="#F5ECDA"/>
+</radialGradient>
+<pattern id="hex" width="56" height="97" patternUnits="userSpaceOnUse" patternTransform="scale(0.9)">
+<path d="M28 0 L56 16 L56 48 L28 64 L0 48 L0 16 Z M28 64 L28 97 M0 48 L0 16" fill="none" stroke="#9A5A12" stroke-opacity="0.1" stroke-width="1.5"/>
+</pattern>
+<radialGradient id="shadow" cx="50%" cy="50%" r="50%">
+<stop offset="0%" stop-color="#5E3715" stop-opacity=".35"/>
+<stop offset="100%" stop-color="#5E3715" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="glass" x1="0" x2="1">
+<stop offset="0" stop-color="#fff" stop-opacity=".0"/>
+<stop offset=".12" stop-color="#fff" stop-opacity=".55"/>
+<stop offset=".22" stop-color="#fff" stop-opacity=".05"/>
+<stop offset=".85" stop-color="#fff" stop-opacity=".0"/>
+<stop offset=".93" stop-color="#fff" stop-opacity=".25"/>
+<stop offset="1" stop-color="#fff" stop-opacity="0"/>
+</linearGradient>
+</defs>
+<rect width="800" height="1000" fill="url(#bg)"/>
+<rect width="800" height="1000" fill="url(#hex)"/>
+<ellipse cx="400" cy="860" rx="250" ry="34" fill="url(#shadow)"/>
+<defs>
+<linearGradient id="honey" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#9A5A12"/>
+<stop offset="1" stop-color="#5E3715"/>
+</linearGradient>
+<linearGradient id="lid" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0" stop-color="#434828"/>
+<stop offset="1" stop-color="#27231E"/>
+</linearGradient>
+</defs>
+<!-- jar body -->
+<path d="M230 330 Q210 330 210 360 L210 800 Q210 850 260 850 L540 850 Q590 850 590 800 L590 360 Q590 330 570 330 Z" fill="url(#honey)"/>
+<path d="M230 330 Q210 330 210 360 L210 800 Q210 850 260 850 L540 850 Q590 850 590 800 L590 360 Q590 330 570 330 Z" fill="url(#glass)"/>
+<path d="M226 330 Q206 330 206 362 L206 800 Q206 854 260 854 L540 854 Q594 854 594 800 L594 362 Q594 330 574 330" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="3"/>
+<!-- neck + lid -->
+<rect x="250" y="300" width="300" height="40" rx="8" fill="#5E3715" opacity=".9"/>
+<rect x="235" y="215" width="330" height="95" rx="16" fill="url(#lid)"/>
+<g stroke="#000" stroke-opacity=".12" stroke-width="3">
+<line x1="255" y1="225" x2="255" y2="300"/><line x1="275" y1="225" x2="275" y2="300"/><line x1="295" y1="225" x2="295" y2="300"/><line x1="315" y1="225" x2="315" y2="300"/><line x1="335" y1="225" x2="335" y2="300"/><line x1="355" y1="225" x2="355" y2="300"/><line x1="375" y1="225" x2="375" y2="300"/><line x1="395" y1="225" x2="395" y2="300"/><line x1="415" y1="225" x2="415" y2="300"/><line x1="435" y1="225" x2="435" y2="300"/><line x1="455" y1="225" x2="455" y2="300"/><line x1="475" y1="225" x2="475" y2="300"/><line x1="495" y1="225" x2="495" y2="300"/><line x1="515" y1="225" x2="515" y2="300"/><line x1="535" y1="225" x2="535" y2="300"/>
+</g>
+<rect x="235" y="215" width="330" height="18" rx="9" fill="#fff" opacity=".22"/>
+<!-- twine -->
+<path d="M240 312 Q400 340 560 312" fill="none" stroke="#D9C39A" stroke-width="5"/>
+<g>
+<rect x="245" y="490" width="310" height="175" rx="14" fill="#FBF6EC" stroke="#C27612" stroke-width="2"/>
+<rect x="257" y="502" width="286" height="151" rx="9" fill="none" stroke="#C27612" stroke-opacity=".5" stroke-width="1"/>
+<path d="M400 508 l12 7 v14 l-12 7 l-12 -7 v-14 z" fill="#E0961A"/>
+<text x="400" y="582" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="38" font-weight="700" fill="#27231E">Kestane Balı</text>
+<text x="400" y="620" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="17" letter-spacing="4" fill="#9A5A12">KARADENİZ · 850 G</text>
+</g>
+<!-- drip over lid -->
+<path d="M470 305 q0 40 10 60 q10 20 0 32 q-12 10 -20 -4 q-6 -14 0 -30 q8 -22 10 -58 z" fill="#9A5A12"/>
+<circle cx="469" cy="376" r="5" fill="#fff" opacity=".6"/>
+</svg>

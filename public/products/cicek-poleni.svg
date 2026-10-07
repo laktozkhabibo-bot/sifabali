@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-label="Çiçek Poleni">
+<defs>
+<radialGradient id="bg" cx="50%" cy="38%" r="75%">
+<stop offset="0%" stop-color="#FFF8E8"/>
+<stop offset="100%" stop-color="#F5ECDA"/>
+</radialGradient>
+<pattern id="hex" width="56" height="97" patternUnits="userSpaceOnUse" patternTransform="scale(0.9)">
+<path d="M28 0 L56 16 L56 48 L28 64 L0 48 L0 16 Z M28 64 L28 97 M0 48 L0 16" fill="none" stroke="#9A5A12" stroke-opacity="0.1" stroke-width="1.5"/>
+</pattern>
+<radialGradient id="shadow" cx="50%" cy="50%" r="50%">
+<stop offset="0%" stop-color="#5E3715" stop-opacity=".35"/>
+<stop offset="100%" stop-color="#5E3715" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="glass" x1="0" x2="1">
+<stop offset="0" stop-color="#fff" stop-opacity=".0"/>
+<stop offset=".12" stop-color="#fff" stop-opacity=".55"/>
+<stop offset=".22" stop-color="#fff" stop-opacity=".05"/>
+<stop offset=".85" stop-color="#fff" stop-opacity=".0"/>
+<stop offset=".93" stop-color="#fff" stop-opacity=".25"/>
+<stop offset="1" stop-color="#fff" stop-opacity="0"/>
+</linearGradient>
+</defs>
+<rect width="800" height="1000" fill="url(#bg)"/>
+<rect width="800" height="1000" fill="url(#hex)"/>
+<ellipse cx="400" cy="860" rx="250" ry="34" fill="url(#shadow)"/>
+<defs>
+<linearGradient id="honey" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#FDEBC0"/>
+<stop offset="1" stop-color="#FAD98A"/>
+</linearGradient>
+<linearGradient id="lid" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0" stop-color="#959A63"/>
+<stop offset="1" stop-color="#565C33"/>
+</linearGradient>
+</defs>
+<!-- jar body -->
+<path d="M230 330 Q210 330 210 360 L210 800 Q210 850 260 850 L540 850 Q590 850 590 800 L590 360 Q590 330 570 330 Z" fill="url(#honey)"/>
+<path d="M230 330 Q210 330 210 360 L210 800 Q210 850 260 850 L540 850 Q590 850 590 800 L590 360 Q590 330 570 330 Z" fill="url(#glass)"/>
+<path d="M226 330 Q206 330 206 362 L206 800 Q206 854 260 854 L540 854 Q594 854 594 800 L594 362 Q594 330 574 330" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="3"/>
+<circle cx="235" cy="620" r="7" fill="#F6C453"/><circle cx="288" cy="657" r="8" fill="#E0961A"/><circle cx="341" cy="694" r="9" fill="#B5B98A"/><circle cx="394" cy="731" r="10" fill="#EFAE2A"/><circle cx="447" cy="768" r="7" fill="#C27612"/><circle cx="500" cy="805" r="8" fill="#959A63"/><circle cx="553" cy="632" r="9" fill="#F6C453"/><circle cx="276" cy="669" r="10" fill="#E0961A"/><circle cx="329" cy="706" r="7" fill="#B5B98A"/><circle cx="382" cy="743" r="8" fill="#EFAE2A"/><circle cx="435" cy="780" r="9" fill="#C27612"/><circle cx="488" cy="817" r="10" fill="#959A63"/><circle cx="541" cy="644" r="7" fill="#F6C453"/><circle cx="264" cy="681" r="8" fill="#E0961A"/><circle cx="317" cy="718" r="9" fill="#B5B98A"/><circle cx="370" cy="755" r="10" fill="#EFAE2A"/><circle cx="423" cy="792" r="7" fill="#C27612"/><circle cx="476" cy="829" r="8" fill="#959A63"/><circle cx="529" cy="656" r="9" fill="#F6C453"/><circle cx="252" cy="693" r="10" fill="#E0961A"/><circle cx="305" cy="730" r="7" fill="#B5B98A"/><circle cx="358" cy="767" r="8" fill="#EFAE2A"/><circle cx="411" cy="804" r="9" fill="#C27612"/><circle cx="464" cy="631" r="10" fill="#959A63"/><circle cx="517" cy="668" r="7" fill="#F6C453"/><circle cx="240" cy="705" r="8" fill="#E0961A"/><circle cx="293" cy="742" r="9" fill="#B5B98A"/><circle cx="346" cy="779" r="10" fill="#EFAE2A"/><circle cx="399" cy="816" r="7" fill="#C27612"/><circle cx="452" cy="643" r="8" fill="#959A63"/><circle cx="505" cy="680" r="9" fill="#F6C453"/><circle cx="558" cy="717" r="10" fill="#E0961A"/><circle cx="281" cy="754" r="7" fill="#B5B98A"/><circle cx="334" cy="791" r="8" fill="#EFAE2A"/><circle cx="387" cy="828" r="9" fill="#C27612"/><circle cx="440" cy="655" r="10" fill="#959A63"/><circle cx="493" cy="692" r="7" fill="#F6C453"/><circle cx="546" cy="729" r="8" fill="#E0961A"/><circle cx="269" cy="766" r="9" fill="#B5B98A"/><circle cx="322" cy="803" r="10" fill="#EFAE2A"/><circle cx="375" cy="630" r="7" fill="#C27612"/><circle cx="428" cy="667" r="8" fill="#959A63"/><circle cx="481" cy="704" r="9" fill="#F6C453"/><circle cx="534" cy="741" r="10" fill="#E0961A"/><circle cx="257" cy="778" r="7" fill="#B5B98A"/><circle cx="310" cy="815" r="8" fill="#EFAE2A"/><circle cx="363" cy="642" r="9" fill="#C27612"/><circle cx="416" cy="679" r="10" fill="#959A63"/><circle cx="469" cy="716" r="7" fill="#F6C453"/><circle cx="522" cy="753" r="8" fill="#E0961A"/><circle cx="245" cy="790" r="9" fill="#B5B98A"/><circle cx="298" cy="827" r="10" fill="#EFAE2A"/><circle cx="351" cy="654" r="7" fill="#C27612"/><circle cx="404" cy="691" r="8" fill="#959A63"/><circle cx="457" cy="728" r="9" fill="#F6C453"/><circle cx="510" cy="765" r="10" fill="#E0961A"/><circle cx="563" cy="802" r="7" fill="#B5B98A"/><circle cx="286" cy="629" r="8" fill="#EFAE2A"/><circle cx="339" cy="666" r="9" fill="#C27612"/><circle cx="392" cy="703" r="10" fill="#959A63"/><circle cx="445" cy="740" r="7" fill="#F6C453"/><circle cx="498" cy="777" r="8" fill="#E0961A"/><circle cx="551" cy="814" r="9" fill="#B5B98A"/><circle cx="274" cy="641" r="10" fill="#EFAE2A"/><circle cx="327" cy="678" r="7" fill="#C27612"/><circle cx="380" cy="715" r="8" fill="#959A63"/><circle cx="433" cy="752" r="9" fill="#F6C453"/><circle cx="486" cy="789" r="10" fill="#E0961A"/><circle cx="539" cy="826" r="7" fill="#B5B98A"/><circle cx="262" cy="653" r="8" fill="#EFAE2A"/>
+<!-- neck + lid -->
+<rect x="250" y="300" width="300" height="40" rx="8" fill="#FAD98A" opacity=".9"/>
+<rect x="235" y="215" width="330" height="95" rx="16" fill="url(#lid)"/>
+<g stroke="#000" stroke-opacity=".12" stroke-width="3">
+<line x1="255" y1="225" x2="255" y2="300"/><line x1="275" y1="225" x2="275" y2="300"/><line x1="295" y1="225" x2="295" y2="300"/><line x1="315" y1="225" x2="315" y2="300"/><line x1="335" y1="225" x2="335" y2="300"/><line x1="355" y1="225" x2="355" y2="300"/><line x1="375" y1="225" x2="375" y2="300"/><line x1="395" y1="225" x2="395" y2="300"/><line x1="415" y1="225" x2="415" y2="300"/><line x1="435" y1="225" x2="435" y2="300"/><line x1="455" y1="225" x2="455" y2="300"/><line x1="475" y1="225" x2="475" y2="300"/><line x1="495" y1="225" x2="495" y2="300"/><line x1="515" y1="225" x2="515" y2="300"/><line x1="535" y1="225" x2="535" y2="300"/>
+</g>
+<rect x="235" y="215" width="330" height="18" rx="9" fill="#fff" opacity=".22"/>
+<!-- twine -->
+<path d="M240 312 Q400 340 560 312" fill="none" stroke="#D9C39A" stroke-width="5"/>
+<g>
+<rect x="245" y="490" width="310" height="175" rx="14" fill="#FBF6EC" stroke="#C27612" stroke-width="2"/>
+<rect x="257" y="502" width="286" height="151" rx="9" fill="none" stroke="#C27612" stroke-opacity=".5" stroke-width="1"/>
+<path d="M400 508 l12 7 v14 l-12 7 l-12 -7 v-14 z" fill="#E0961A"/>
+<text x="400" y="582" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="38" font-weight="700" fill="#27231E">Çiçek Poleni</text>
+<text x="400" y="620" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="17" letter-spacing="4" fill="#9A5A12">TAZE · 250 G</text>
+</g>
+<!-- drip over lid -->
+<path d="M470 305 q0 40 10 60 q10 20 0 32 q-12 10 -20 -4 q-6 -14 0 -30 q8 -22 10 -58 z" fill="#FDEBC0"/>
+<circle cx="469" cy="376" r="5" fill="#fff" opacity=".6"/>
+</svg>

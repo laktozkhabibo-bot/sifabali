@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-label="Hediye Kutusu">
+<defs>
+<linearGradient id="d" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#6F7543"/>
+<stop offset="1" stop-color="#27231E"/>
+</linearGradient>
+<pattern id="hx" width="56" height="97" patternUnits="userSpaceOnUse" patternTransform="scale(0.9)">
+<path d="M28 0 L56 16 L56 48 L28 64 L0 48 L0 16 Z M28 64 L28 97 M0 48 L0 16" fill="none" stroke="#FFF8E8" stroke-opacity="0.22" stroke-width="1.5"/>
+</pattern>
+<radialGradient id="shine" cx="30%" cy="25%" r="60%">
+<stop offset="0" stop-color="#fff" stop-opacity=".45"/>
+<stop offset="1" stop-color="#fff" stop-opacity="0"/>
+</radialGradient>
+</defs>
+<rect width="800" height="1000" fill="url(#d)"/>
+<rect width="800" height="1000" fill="url(#hx)"/>
+<rect width="800" height="1000" fill="url(#shine)"/>
+<!-- dipper -->
+<g transform="translate(150 70) rotate(-28 400 420)">
+<rect x="388" y="40" width="24" height="330" rx="12" fill="#7A4716"/>
+<ellipse cx="400" cy="400" rx="58" ry="16" fill="#9A5A12" stroke="#5E3715" stroke-width="3"/><ellipse cx="400" cy="432" rx="64" ry="16" fill="#9A5A12" stroke="#5E3715" stroke-width="3"/><ellipse cx="400" cy="464" rx="70" ry="16" fill="#9A5A12" stroke="#5E3715" stroke-width="3"/><ellipse cx="400" cy="496" rx="64" ry="16" fill="#9A5A12" stroke="#5E3715" stroke-width="3"/><ellipse cx="400" cy="528" rx="58" ry="16" fill="#9A5A12" stroke="#5E3715" stroke-width="3"/>
+<ellipse cx="400" cy="560" rx="30" ry="12" fill="#7A4716"/>
+</g>
+<!-- honey stream -->
+<path d="M606 600 C 608 700, 598 760, 602 1000 L 630 1000 C 626 760, 622 700, 624 600 Z" fill="#6F7543" opacity=".95"/>
+<path d="M0 880 Q 200 840 400 870 T 800 860 L800 1000 L0 1000 Z" fill="#27231E"/>
+<path d="M0 900 Q 200 860 400 890 T 800 880" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="4"/>
+<text x="60" y="130" font-family="'Playfair Display', Georgia, serif" font-size="64" font-weight="700" fill="#FFF8E8">Hediye Kutusu</text>
+<text x="62" y="176" font-family="Inter, Arial, sans-serif" font-size="20" letter-spacing="6" fill="#FFF8E8" opacity=".85">SEVDİKLERİNİZE ŞİFA</text>
+</svg>
