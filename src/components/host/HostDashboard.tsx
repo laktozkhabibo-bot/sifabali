@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 import { Logo } from "@/components/ui/Logo";
-import { ExternalIcon, LogoutIcon, SaveIcon } from "@/components/ui/Icons";
+import { ExternalIcon, LockIcon, LogoutIcon, SaveIcon } from "@/components/ui/Icons";
 import type { Locale } from "@/lib/i18n/config";
 import type { CategoryDTO, ProductDTO, SiteContent } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -31,7 +31,7 @@ const TABS = [
   { id: "contact", label: "İletişim", icon: "📞" },
   { id: "announcement", label: "Duyuru Çubuğu", icon: "📣" },
   { id: "inbox", label: "Gelen Kutusu", icon: "✉️" },
-  { id: "security", label: "Güvenlik", icon: "🔒" },
+  { id: "security", label: "Şifre Değiştir", icon: "🔑" },
 ] as const;
 type TabId = (typeof TABS)[number]["id"];
 
@@ -175,6 +175,9 @@ export function HostDashboard({ initial }: { initial: Snapshot }) {
             ))}
           </nav>
           <div className="space-y-2 border-t border-charcoal/[0.07] p-4">
+            <button onClick={() => setTab("security")} className="flex w-full items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium text-charcoal-500 hover:bg-charcoal/[0.03] hover:text-charcoal">
+              <LockIcon width={16} /> Şifreyi değiştir
+            </button>
             <a href="/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium text-charcoal-500 hover:bg-charcoal/[0.03] hover:text-charcoal">
               <ExternalIcon width={16} /> Siteyi görüntüle
             </a>

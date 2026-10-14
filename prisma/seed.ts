@@ -51,13 +51,9 @@ async function main() {
   // ── Host password ──
   const cred = await prisma.adminCredential.findUnique({ where: { id: 1 } });
   if (!cred) {
-    const initial = process.env.HOST_INITIAL_PASSWORD;
-    if (initial) {
-      await prisma.adminCredential.create({ data: { id: 1, passwordHash: await bcrypt.hash(initial, 12), tokenVersion: 1 } });
-      console.log("✔ Host password set from HOST_INITIAL_PASSWORD");
-    } else {
-      console.log("! HOST_INITIAL_PASSWORD is empty — set it, or run: npm run host:password");
-    }
+    const initial = process.env.HOST_INITIAL_PASSWORD || "123456789";
+    await prisma.adminCredential.create({ data: { id: 1, passwordHash: await bcrypt.hash(initial, 12), tokenVersion: 1 } });
+    console.log(process.env.HOST_INITIAL_PASSWORD ? "✔ Host password set from HOST_INITIAL_PASSWORD" : '✔ Host password set to the default "123456789" — change it from /hostpage');
   } else {
     console.log("• Host password already set — skipped");
   }

@@ -10,17 +10,20 @@ import { SESSION_COOKIE, verifySessionToken } from "./session";
 
 const BCRYPT_ROUNDS = 12;
 
+/** First password when HOST_INITIAL_PASSWORD is not set. Change it from the panel after the first login. */
+export const DEFAULT_HOST_PASSWORD = "123456789";
+
 export const hashPassword = (plain: string) => bcrypt.hash(plain, BCRYPT_ROUNDS);
 
 /**
  * Returns the stored credential. On the very first run (empty table) it bootstraps the hash
- * from HOST_INITIAL_PASSWORD so the owner can log in without running the seed.
+ * from HOST_INITIAL_PASSWORD (default: "123456789") so the owner can log in without running the seed.
+ * The owner should change it right away from /hostpage → Şifre.
  */
 export async function getCredential() {
   const existing = await prisma.adminCredential.findUnique({ where: { id: 1 } });
   if (existing) return existing;
-  const initial = process.env.HOST_INITIAL_PASSWORD;
-  if (!initial) return null;
+  const initial = process.env.HOST_INITIAL_PASSWORD || DEFAULT_HOST_PASSWORD;
   return prisma.adminCredential.upsert({
     where: { id: 1 },
     update: {},

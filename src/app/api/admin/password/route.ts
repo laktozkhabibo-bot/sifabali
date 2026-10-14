@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic";
 
 const schema = z.object({
   current: z.string().min(1),
-  next: z.string().min(10, "Yeni şifre en az 10 karakter olmalı.").max(200),
+  next: z.string().min(8, "Yeni şifre en az 8 karakter olmalı.").max(200),
 });
 
 /** Changes the host password. All other sessions are logged out (token version bump). */
