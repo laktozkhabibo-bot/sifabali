@@ -8,6 +8,8 @@ function Script({ data }: { data: unknown }) {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }} />;
 }
 
+const absolute = (u: string) => (u.startsWith("http") ? u : `${siteUrl}${u}`);
+
 export function OrganizationJsonLd({ content }: { content: SiteContent }) {
   const c = content.contact;
   return (
@@ -17,7 +19,7 @@ export function OrganizationJsonLd({ content }: { content: SiteContent }) {
         "@type": "Store",
         name: "Şifa Balı",
         url: siteUrl,
-        logo: `${siteUrl}/images/logo-emblem.webp`,
+        logo: absolute(content.media.logo || "/images/logo-emblem.webp"),
         image: `${siteUrl}/og.png`,
         telephone: c.phone || undefined,
         email: c.email || undefined,

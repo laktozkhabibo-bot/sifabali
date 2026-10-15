@@ -32,6 +32,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         subtitle={t(h.subtitle, locale)}
         ctaPrimary={t(h.ctaPrimary, locale)}
         ctaSecondary={t(h.ctaSecondary, locale)}
+        media={content.media}
       />
       <FeaturedProducts products={featured} categories={categories} />
       <WhySection why={content.why} stats={content.stats} />

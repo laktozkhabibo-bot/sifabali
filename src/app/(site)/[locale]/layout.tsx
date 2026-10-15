@@ -58,7 +58,7 @@ export default async function SiteLayout({ children, params }: { children: React
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:start-4 focus:top-4 focus:z-[300] focus:rounded-full focus:bg-charcoal focus:px-5 focus:py-3 focus:text-cream">
           {dict.a11y.skip}
         </a>
-        <LocaleProvider value={{ locale, dict, contact: content.contact }}>
+        <LocaleProvider value={{ locale, dict, contact: content.contact, media: content.media }}>
           {content.announcement.enabled && <AnnouncementBar text={t(content.announcement.text, locale)} link={content.announcement.link} />}
           <Header />
           <main id="main" className="relative -mt-[var(--header-h)]">{children}</main>

@@ -9,6 +9,7 @@ interface LocaleContextValue {
   locale: Locale;
   dict: Dictionary;
   contact: SiteContent["contact"];
+  media: SiteContent["media"];
 }
 
 const LocaleContext = createContext<LocaleContextValue | null>(null);

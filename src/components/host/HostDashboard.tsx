@@ -153,7 +153,7 @@ export function HostDashboard({ initial }: { initial: Snapshot }) {
         {/* Sidebar */}
         <aside className="hidden border-e border-charcoal/[0.07] bg-white lg:sticky lg:top-0 lg:flex lg:h-screen lg:flex-col">
           <div className="px-6 py-6">
-            <Logo className="h-12" />
+            <Logo emblem={draft.content.media.logo} className="h-12" />
             <p className="mt-2 text-xs font-semibold uppercase tracking-[0.2em] text-charcoal-300">Yönetim Paneli</p>
           </div>
           <nav className="flex-1 space-y-1 px-3" aria-label="Panel bölümleri">
@@ -192,7 +192,7 @@ export function HostDashboard({ initial }: { initial: Snapshot }) {
           <header className="sticky top-0 z-40 border-b border-charcoal/[0.07] bg-[#F7F4EE]/90 backdrop-blur-xl">
             <div className="flex flex-wrap items-center gap-3 px-4 py-3 md:px-8">
               <div className="flex items-center gap-3 lg:hidden">
-                <Logo compact className="h-9" />
+                <Logo compact emblem={draft.content.media.logo} className="h-9" />
               </div>
               <div className="min-w-0 flex-1">
                 <h1 className="truncate text-lg font-semibold">{TABS.find((t) => t.id === tab)?.label}</h1>

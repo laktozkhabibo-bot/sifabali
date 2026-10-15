@@ -1,5 +1,6 @@
 /** Validation schemas for data sent by the host panel */
 import { z } from "zod";
+import { FEATURE_ICONS } from "./types";
 
 const l10n = z.object({ tr: z.string().max(5000), en: z.string().max(5000), ar: z.string().max(5000) });
 const l10nList = z.object({ tr: z.array(z.string().max(300)).max(30), en: z.array(z.string().max(300)).max(30), ar: z.array(z.string().max(300)).max(30) });
@@ -34,7 +35,7 @@ export const contentSchema = z.object({
   announcement: z.object({ enabled: z.boolean(), text: l10n, link: url }),
   hero: z.object({ eyebrow: l10n, title: l10n, subtitle: l10n, ctaPrimary: l10n, ctaSecondary: l10n }),
   stats: z.object({ customers: z.number().int().min(0), hives: z.number().int().min(0), years: z.number().int().min(0) }),
-  why: z.object({ title: l10n, subtitle: l10n, items: z.array(feature).max(8) }),
+  why: z.object({ title: l10n, subtitle: l10n, items: z.array(feature.extend({ icon: z.enum(FEATURE_ICONS) })).max(8) }),
   journey: z.object({
     title: l10n,
     subtitle: l10n,
@@ -60,6 +61,14 @@ export const contentSchema = z.object({
     tiktok: url,
   }),
   seo: z.object({ title: l10n, description: l10n }),
+  media: z.object({
+    logo: z.string().max(1000),
+    heroImage: z.string().max(1000),
+    heroComb: z.string().max(1000),
+    bees: z.boolean(),
+    aboutMain: z.string().max(1000),
+    aboutSecond: z.string().max(1000),
+  }),
 });
 
 export const saveSchema = z.object({

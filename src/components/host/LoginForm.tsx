@@ -6,7 +6,7 @@ import { Logo } from "@/components/ui/Logo";
 import { EyeIcon, EyeOffIcon } from "@/components/ui/Icons";
 
 /** /hostpagepass — a calm, minimal password-only login. Verification happens on the server. */
-export function LoginForm() {
+export function LoginForm({ logo }: { logo?: string }) {
   const router = useRouter();
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
@@ -43,7 +43,7 @@ export function LoginForm() {
     <main className="grid min-h-screen place-items-center bg-cream px-5">
       <div className="w-full max-w-sm">
         <div className="mb-8 flex justify-center">
-          <Logo className="h-14" />
+          <Logo emblem={logo} className="h-14" />
         </div>
 
         <form onSubmit={submit} className="rounded-3xl bg-white p-7 shadow-[0_10px_40px_-12px_rgba(27,24,20,.15)] ring-1 ring-charcoal/5">

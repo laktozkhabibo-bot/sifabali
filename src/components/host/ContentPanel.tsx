@@ -1,16 +1,20 @@
 "use client";
 
 import { useState } from "react";
-import { PlusIcon, TrashIcon, StarIcon } from "@/components/ui/Icons";
-import type { SiteContent } from "@/lib/types";
+import { ArrowIcon, PlusIcon, TrashIcon, StarIcon } from "@/components/ui/Icons";
+import { FEATURE_ICON_LABELS, FeatureIcon } from "@/components/ui/FeatureIcons";
+import { defaultMedia } from "@/lib/media";
+import { FEATURE_ICONS, type SiteContent, type WhyItem } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { Card, L10nField, NumberField, TextField, Toggle } from "./fields";
 import { ImageUploader } from "./ImageUploader";
+import { ImageSlot } from "./ImageSlot";
 
 type Setter = <K extends keyof SiteContent>(key: K, value: SiteContent[K]) => void;
 
 const SECTIONS = [
   { id: "hero", label: "Ana Sayfa Girişi (Hero)" },
+  { id: "media", label: "Site Görselleri" },
   { id: "why", label: "Neden Şifa Balı" },
   { id: "stats", label: "Rakamlar" },
   { id: "journey", label: "Çiçekten Kavanoza" },
@@ -21,9 +25,23 @@ const SECTIONS = [
   { id: "seo", label: "SEO (Google)" },
 ] as const;
 
-/** Every text on the website, grouped by page section */
+const MAX_WHY = 8;
+
+/** Every text & picture on the website, grouped by page section */
 export function ContentPanel({ content, set }: { content: SiteContent; set: Setter }) {
   const [section, setSection] = useState<(typeof SECTIONS)[number]["id"]>("hero");
+  const why = content.why;
+  const setWhyItems = (items: WhyItem[]) => set("why", { ...why, items });
+  const patchWhy = (i: number, patch: Partial<WhyItem>) => setWhyItems(why.items.map((x, j) => (j === i ? { ...x, ...patch } : x)));
+  const moveWhy = (i: number, dir: -1 | 1) => {
+    const j = i + dir;
+    if (j < 0 || j >= why.items.length) return;
+    const next = [...why.items];
+    [next[i], next[j]] = [next[j], next[i]];
+    setWhyItems(next);
+  };
+  const media = content.media;
+  const setMedia = (patch: Partial<SiteContent["media"]>) => set("media", { ...media, ...patch });
 
   return (
     <div className="space-y-5">
@@ -52,18 +70,126 @@ export function ContentPanel({ content, set }: { content: SiteContent; set: Sett
       )}
 
       {section === "why" && (
-        <Card title="Neden Şifa Balı?" description="Ana sayfadaki koyu renkli özellik bölümü (4 kart).">
-          <L10nField label="Başlık" value={content.why.title} onChange={(title) => set("why", { ...content.why, title })} />
-          <L10nField label="Alt başlık" value={content.why.subtitle} onChange={(subtitle) => set("why", { ...content.why, subtitle })} multiline rows={2} />
-          {content.why.items.map((item, i) => (
-            <div key={i} className="rounded-2xl border border-charcoal/[0.07] bg-[#FBFAF7] p-4">
-              <p className="mb-3 text-xs font-bold uppercase tracking-widest text-charcoal-400">Kart {i + 1}</p>
+        <Card
+          title="Neden Şifa Balı?"
+          description="Ana sayfadaki koyu renkli bölüm ve Hakkımızda sayfasındaki değer kartları. Her kart için bir ikon seçin; kart ekleyip silebilir, sıralayabilirsiniz."
+          actions={
+            why.items.length < MAX_WHY ? (
+              <button
+                onClick={() => setWhyItems([...why.items, { icon: "sparkle", title: { tr: "", en: "", ar: "" }, text: { tr: "", en: "", ar: "" } }])}
+                className="inline-flex items-center gap-2 rounded-xl bg-charcoal px-4 py-2.5 text-sm font-semibold text-cream hover:bg-honey-600"
+              >
+                <PlusIcon width={18} /> Kart Ekle
+              </button>
+            ) : undefined
+          }
+        >
+          <L10nField label="Başlık" value={why.title} onChange={(title) => set("why", { ...why, title })} />
+          <L10nField label="Alt başlık" value={why.subtitle} onChange={(subtitle) => set("why", { ...why, subtitle })} multiline rows={2} />
+          {why.items.map((item, i) => (
+            <div key={i} className="rounded-2xl border border-charcoal/[0.07] bg-[#FBFAF7] p-4 md:p-5">
+              <div className="mb-3 flex items-center justify-between gap-3">
+                <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-charcoal-400">
+                  <span className="grid h-8 w-8 place-items-center rounded-lg bg-charcoal text-honey-300">
+                    <FeatureIcon name={item.icon} width={16} height={16} />
+                  </span>
+                  Kart {i + 1}
+                </p>
+                <div className="flex items-center gap-1">
+                  <button onClick={() => moveWhy(i, -1)} disabled={i === 0} aria-label="Yukarı taşı" className="grid h-8 w-8 place-items-center rounded-lg text-charcoal-400 hover:bg-white disabled:opacity-30"><ArrowIcon width={14} className="-rotate-90" /></button>
+                  <button onClick={() => moveWhy(i, 1)} disabled={i === why.items.length - 1} aria-label="Aşağı taşı" className="grid h-8 w-8 place-items-center rounded-lg text-charcoal-400 hover:bg-white disabled:opacity-30"><ArrowIcon width={14} className="rotate-90" /></button>
+                  <button
+                    onClick={() => why.items.length > 1 && confirm("Bu kart silinsin mi?") && setWhyItems(why.items.filter((_, j) => j !== i))}
+                    disabled={why.items.length <= 1}
+                    aria-label="Kartı sil"
+                    className="grid h-8 w-8 place-items-center rounded-lg text-charcoal-300 hover:bg-red-50 hover:text-red-600 disabled:opacity-30"
+                  >
+                    <TrashIcon width={16} />
+                  </button>
+                </div>
+              </div>
               <div className="space-y-4">
-                <L10nField label="Başlık" value={item.title} onChange={(title) => set("why", { ...content.why, items: content.why.items.map((x, j) => (j === i ? { ...x, title } : x)) })} />
-                <L10nField label="Metin" value={item.text} onChange={(text) => set("why", { ...content.why, items: content.why.items.map((x, j) => (j === i ? { ...x, text } : x)) })} multiline rows={2} />
+                <L10nField label="Başlık" value={item.title} onChange={(title) => patchWhy(i, { title })} />
+                <L10nField label="Metin" value={item.text} onChange={(text) => patchWhy(i, { text })} multiline rows={2} />
+                <div>
+                  <span className="mb-1.5 flex items-baseline justify-between gap-3 text-sm font-medium text-charcoal-600">
+                    İkon <span className="text-xs font-normal text-charcoal-300">{FEATURE_ICON_LABELS[item.icon] ?? ""}</span>
+                  </span>
+                  <div className="flex flex-wrap gap-1.5" role="radiogroup" aria-label={`Kart ${i + 1} ikonu`}>
+                    {FEATURE_ICONS.map((name) => (
+                      <button
+                        key={name}
+                        type="button"
+                        role="radio"
+                        aria-checked={item.icon === name}
+                        onClick={() => patchWhy(i, { icon: name })}
+                        title={FEATURE_ICON_LABELS[name]}
+                        aria-label={FEATURE_ICON_LABELS[name]}
+                        className={cn(
+                          "grid h-10 w-10 place-items-center rounded-xl ring-1 transition-colors",
+                          item.icon === name ? "bg-charcoal text-honey-300 ring-charcoal" : "bg-white text-charcoal-400 ring-charcoal/10 hover:text-charcoal",
+                        )}
+                      >
+                        <FeatureIcon name={name} width={19} height={19} />
+                      </button>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           ))}
+        </Card>
+      )}
+
+      {section === "media" && (
+        <Card
+          title="Site Görselleri"
+          description="Sitedeki her görseli buradan değiştirebilir ya da tamamen kaldırabilirsiniz. “Varsayılana dön” orijinal görseli geri getirir. Ürün ve “Çiçekten Kavanoza” görselleri kendi bölümlerinden düzenlenir."
+        >
+          <ImageSlot
+            label="Logo amblemi"
+            hint="Menü, alt bilgi ve yönetim panelindeki “SB” amblemi. Kaldırılırsa yalnızca “Şifa BALI” yazısı görünür. Şeffaf PNG önerilir."
+            value={media.logo}
+            fallback={defaultMedia.logo}
+            onChange={(logo) => setMedia({ logo })}
+          />
+          <ImageSlot
+            label="Ana sayfa kavanoz görseli"
+            hint="Ana sayfanın en üstündeki büyük görsel. Kaldırılırsa başlık alanı tek sütun olur. Dikey, şeffaf PNG önerilir."
+            value={media.heroImage}
+            fallback={defaultMedia.heroImage}
+            onChange={(heroImage) => setMedia({ heroImage })}
+            tall
+          />
+          <ImageSlot
+            label="Petek ve bal şeridi"
+            hint="Ana sayfanın üstünde boydan boya uzanan petek şeridi. Yatayda tekrar eder; üst kenarı düz, şeffaf PNG önerilir."
+            value={media.heroComb}
+            fallback={defaultMedia.heroComb}
+            onChange={(heroComb) => setMedia({ heroComb })}
+          />
+          <Toggle
+            label="Uçan arılar"
+            description="Ana sayfanın üst bölümünde uçan gerçekçi arılar."
+            checked={media.bees}
+            onChange={(bees) => setMedia({ bees })}
+          />
+          <div className="grid gap-4 md:grid-cols-2">
+            <ImageSlot
+              label="Hakkımızda — büyük görsel"
+              value={media.aboutMain}
+              fallback={defaultMedia.aboutMain}
+              onChange={(aboutMain) => setMedia({ aboutMain })}
+              tall
+            />
+            <ImageSlot
+              label="Hakkımızda — küçük görsel"
+              value={media.aboutSecond}
+              fallback={defaultMedia.aboutSecond}
+              onChange={(aboutSecond) => setMedia({ aboutSecond })}
+              tall
+            />
+          </div>
         </Card>
       )}
 

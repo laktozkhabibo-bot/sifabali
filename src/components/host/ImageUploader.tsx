@@ -12,6 +12,16 @@ import { cn } from "@/lib/utils";
  * are added to the product draft; the first image is the main (cover) image.
  * Images can be re-ordered by dragging.
  */
+/** Uploads one image (Vercel Blob in production, /public/uploads locally) and returns its URL */
+export async function uploadImage(file: File): Promise<string> {
+  const body = new FormData();
+  body.append("file", file);
+  const res = await fetch("/api/admin/upload", { method: "POST", body });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error ?? "Yükleme başarısız.");
+  return data.url;
+}
+
 export function ImageUploader({ images, onChange }: { images: string[]; onChange: (images: string[]) => void }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [dragging, setDragging] = useState(false);
@@ -27,12 +37,7 @@ export function ImageUploader({ images, onChange }: { images: string[]; onChange
     const urls: string[] = [];
     for (const file of list) {
       try {
-        const body = new FormData();
-        body.append("file", file);
-        const res = await fetch("/api/admin/upload", { method: "POST", body });
-        const data = await res.json();
-        if (!res.ok) throw new Error(data.error ?? "Yükleme başarısız.");
-        urls.push(data.url);
+        urls.push(await uploadImage(file));
       } catch (err) {
         toast.error(`${file.name}: ${(err as Error).message}`);
       } finally {

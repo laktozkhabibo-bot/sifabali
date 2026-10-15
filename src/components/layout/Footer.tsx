@@ -24,7 +24,7 @@ export function Footer({ locale, content, categories }: { locale: Locale; conten
       <div className="pointer-events-none absolute -top-40 start-1/2 h-80 w-[60rem] -translate-x-1/2 rounded-full bg-honey-500/10 blur-3xl" />
       <div className="container relative grid gap-12 py-20 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
-          <Logo tone="light" className="h-16" />
+          <Logo tone="light" emblem={content.media.logo} className="h-16" />
           <p className="mt-6 max-w-sm leading-relaxed text-cream/60">{t(content.brand.footerText, locale)}</p>
           <div className="mt-8 flex gap-3">
             {socials.map(({ href, label, Icon }) => (

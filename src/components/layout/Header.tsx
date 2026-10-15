@@ -13,7 +13,7 @@ import { cartCount, useCart } from "@/store/cart";
 import { cn } from "@/lib/utils";
 
 export function Header() {
-  const { locale, dict } = useLocale();
+  const { locale, dict, media } = useLocale();
   const pathname = usePathname();
   const current = stripLocale(pathname || "/");
   const items = useCart((s) => s.items);
@@ -58,7 +58,7 @@ export function Header() {
         >
           <div className="container flex h-[var(--header-h)] items-center justify-between gap-4">
             <Link href={localePath(locale, "/")} aria-label="Şifa Balı — Ana Sayfa" className="shrink-0">
-              <Logo tone={menuOpen ? "light" : "dark"} className="h-10 md:h-[54px]" />
+              <Logo tone={menuOpen ? "light" : "dark"} emblem={media.logo} className="h-10 md:h-[54px]" />
             </Link>
 
             <nav aria-label="Ana menü" className="hidden items-center gap-1 lg:flex">

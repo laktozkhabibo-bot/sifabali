@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
  * `wide` → full-width band; `card` → narrower cards; `comb` → honeycomb with drips across the whole page (home hero).
  * The band keeps a pleasant thickness on every screen size (object-cover, anchored to the top).
  */
-export function HoneyEdge({ variant = "wide", className, priority = false }: { variant?: "wide" | "card" | "comb"; className?: string; priority?: boolean }) {
+export function HoneyEdge({ variant = "wide", className, priority = false, src = "/images/honey-comb-edge.webp" }: { variant?: "wide" | "card" | "comb"; className?: string; priority?: boolean; src?: string }) {
   if (variant === "comb") {
     // Real honeycomb with honey dripping from it, repeated seamlessly across the full width
     // (the tile is the photo + its mirror image, so neighbouring tiles always line up).
@@ -14,7 +14,7 @@ export function HoneyEdge({ variant = "wide", className, priority = false }: { v
       <div
         aria-hidden
         className={cn("pointer-events-none h-[clamp(130px,15.5vw,230px)] bg-repeat-x", className)}
-        style={{ backgroundImage: "url(/images/honey-comb-edge.webp)", backgroundSize: "auto 100%", backgroundPosition: "left top" }}
+        style={{ backgroundImage: `url("${src}")`, backgroundSize: "auto 100%", backgroundPosition: "left top" }}
       />
     );
   }

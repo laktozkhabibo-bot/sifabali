@@ -8,17 +8,30 @@ import { cn } from "@/lib/utils";
  * The whole logo scales with the height given in `className` (e.g. "h-11").
  *  - tone="light": for dark backgrounds (emblem sits on a cream badge, lighter gold text)
  *  - compact: emblem only
+ *  - emblem: picture set in the host panel ("" hides it, the wordmark stays)
  */
-export function Logo({ className, tone = "dark", compact = false }: { className?: string; tone?: "dark" | "light"; compact?: boolean }) {
+export function Logo({
+  className,
+  tone = "dark",
+  compact = false,
+  emblem = "/images/logo-emblem.webp",
+}: {
+  className?: string;
+  tone?: "dark" | "light";
+  compact?: boolean;
+  emblem?: string;
+}) {
   const light = tone === "light";
   const gid = light ? "logo-gold-light" : "logo-gold";
   return (
     <span className={cn("inline-flex h-10 items-center gap-[0.18em]", className)} role="img" aria-label="Şifa Balı">
-      <span className={cn("relative block h-full shrink-0", light && "rounded-xl bg-cream px-1 py-0.5")}>
-        {/* eslint-disable-next-line @next/next/no-img-element -- small brand mark, needs to scale with the text */}
-        <img src="/images/logo-emblem.webp" alt="" width={487} height={340} className="block h-full w-auto" draggable={false} />
-      </span>
-      {!compact && (
+      {emblem && (
+        <span className={cn("relative block h-full shrink-0", light && "rounded-xl bg-cream px-1 py-0.5")}>
+          {/* eslint-disable-next-line @next/next/no-img-element -- small brand mark, needs to scale with the text */}
+          <img src={emblem} alt="" width={487} height={340} className="block h-full w-auto" draggable={false} />
+        </span>
+      )}
+      {(!compact || !emblem) && (
         <svg viewBox="0 0 260 100" className="block h-full w-auto overflow-visible" aria-hidden style={{ direction: "ltr" }}>
           <defs>
             {/* "Şifa": deep bronze fading to antique gold, like the printed card */}

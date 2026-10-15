@@ -5,6 +5,7 @@
  * Everything here can be edited later from /hostpage.
  */
 import type { CategoryDTO, ProductDTO, SiteContent } from "./types";
+import { defaultMedia } from "./media";
 
 export const defaultContent: SiteContent = {
   announcement: {
@@ -41,6 +42,7 @@ export const defaultContent: SiteContent = {
     },
     items: [
       {
+        icon: "leaf",
         title: { tr: "%100 Doğal", en: "100% Natural", ar: "طبيعي 100%" },
         text: {
           tr: "Şeker şurubu, katkı ya da ısıl işlem yok. Petekten kavanoza, olduğu gibi.",
@@ -49,6 +51,7 @@ export const defaultContent: SiteContent = {
         },
       },
       {
+        icon: "flask",
         title: { tr: "Laboratuvar Onaylı", en: "Lab Tested", ar: "مُختبر معملياً" },
         text: {
           tr: "Her hasat bağımsız laboratuvarlarda analiz edilir; raporlar talep üzerine paylaşılır.",
@@ -57,6 +60,7 @@ export const defaultContent: SiteContent = {
         },
       },
       {
+        icon: "mountain",
         title: { tr: "Yayla Arıcılığı", en: "Highland Apiaries", ar: "مناحل الهضاب" },
         text: {
           tr: "Kovanlarımız 1.500 metre üzerindeki, tarım ilacından uzak endemik çiçek yaylalarında.",
@@ -65,6 +69,7 @@ export const defaultContent: SiteContent = {
         },
       },
       {
+        icon: "truck",
         title: { tr: "Özenli Teslimat", en: "Careful Delivery", ar: "توصيل بعناية" },
         text: {
           tr: "Kırılmaya karşı özel ambalaj ve aynı gün kargo ile kapınıza kadar.",
@@ -254,6 +259,7 @@ export const defaultContent: SiteContent = {
       ar: "عسل الزهور والكستناء والكاراكوفان وعسل الشهد وغذاء الملكات والبروبوليس وحبوب اللقاح من هضاب الأناضول. تسوّق آمن وتوصيل سريع.",
     },
   },
+  media: defaultMedia,
 };
 
 export const defaultCategories: CategoryDTO[] = [

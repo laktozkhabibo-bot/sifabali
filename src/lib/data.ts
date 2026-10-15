@@ -6,13 +6,25 @@
 import "server-only";
 import { unstable_cache } from "next/cache";
 import type { Category, Product } from "@prisma/client";
-import { prisma } from "./prisma";
+import { isDbConfigured, prisma, warnNoDb } from "./prisma";
 import { defaultCategories, defaultContent, fallbackProducts } from "./defaults";
 import type { CategoryDTO, L10n, L10nList, ProductDTO, SiteContent } from "./types";
 
 export const TAGS = { catalog: "catalog", content: "content" } as const;
 
-const hasDb = () => Boolean(process.env.DATABASE_URL);
+const hasDb = () => {
+  const ok = isDbConfigured();
+  if (!ok) warnNoDb();
+  return ok;
+};
+/** Log a database error once per kind (avoids flooding the terminal) */
+const logged = new Set<string>();
+function logDbError(kind: string, err: unknown) {
+  if (logged.has(kind)) return;
+  logged.add(kind);
+  const msg = err instanceof Error ? err.message.split("\n").filter(Boolean).slice(-2).join(" ") : String(err);
+  console.error(`[data] ${kind} query failed, using built-in demo data — ${msg}`);
+}
 
 // ─── Serialization helpers ──────────────────────────────────────────────────
 
@@ -82,7 +94,7 @@ async function loadCatalog(): Promise<{ products: ProductDTO[]; categories: Cate
     ]);
     return { products: products.map(toProductDTO), categories: categories.map(toCategoryDTO) };
   } catch (err) {
-    console.error("[data] catalog query failed, using fallback data:", err);
+    logDbError("catalog", err);
     return { products: fallbackProducts(), categories: defaultCategories };
   }
 }
@@ -95,13 +107,13 @@ async function loadContent(): Promise<SiteContent> {
     for (const r of rows) stored[r.key] = r.value;
     return mergeDeep(defaultContent, stored);
   } catch (err) {
-    console.error("[data] settings query failed, using defaults:", err);
+    logDbError("settings", err);
     return defaultContent;
   }
 }
 
-const cachedCatalog = unstable_cache(loadCatalog, ["catalog-v1"], { tags: [TAGS.catalog], revalidate: 3600 });
-const cachedContent = unstable_cache(loadContent, ["content-v1"], { tags: [TAGS.content], revalidate: 3600 });
+const cachedCatalog = unstable_cache(loadCatalog, ["catalog-v2"], { tags: [TAGS.catalog], revalidate: 3600 });
+const cachedContent = unstable_cache(loadContent, ["content-v2"], { tags: [TAGS.content], revalidate: 3600 });
 
 /** Every editable text & setting of the site */
 export const getSiteContent = () => cachedContent();

@@ -3,12 +3,13 @@
 import { Stagger, StaggerItem, Reveal } from "@/components/motion/Reveal";
 import { Counter } from "@/components/motion/Counter";
 import { HexPattern } from "@/components/ui/HexPattern";
-import { FlaskIcon, LeafIcon, MountainIcon, TruckIcon } from "@/components/ui/Icons";
+import { FeatureIcon } from "@/components/ui/FeatureIcons";
 import { useLocale } from "@/components/layout/LocaleProvider";
 import type { SiteContent } from "@/lib/types";
-import { t } from "@/lib/utils";
+import { cn, t } from "@/lib/utils";
 
-const ICONS = [LeafIcon, FlaskIcon, MountainIcon, TruckIcon];
+// 1–4 cards fill one row; more cards wrap into rows of 3 or 4
+const COLS: Record<number, string> = { 1: "lg:grid-cols-1", 2: "lg:grid-cols-2", 3: "lg:grid-cols-3", 5: "lg:grid-cols-3", 6: "lg:grid-cols-3" };
 
 /** "Neden Şifa Balı?" feature grid + animated counters */
 export function WhySection({ why, stats }: { why: SiteContent["why"]; stats: SiteContent["stats"] }) {
@@ -26,9 +27,8 @@ export function WhySection({ why, stats }: { why: SiteContent["why"]; stats: Sit
           <p className="mt-5 text-lg text-cream/60">{t(why.subtitle, locale)}</p>
         </Reveal>
 
-        <Stagger className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-4" stagger={0.12}>
+        <Stagger className={cn("mt-16 grid gap-5 sm:grid-cols-2", COLS[why.items.length] ?? "lg:grid-cols-4")} stagger={0.12}>
           {why.items.map((item, i) => {
-            const Icon = ICONS[i % ICONS.length];
             return (
               <StaggerItem key={i}>
                 <div className="group relative h-full overflow-hidden rounded-3xl border border-cream/10 bg-cream/[0.03] p-8 transition-colors duration-500 hover:border-honey-500/40 hover:bg-cream/[0.06]">
@@ -36,11 +36,11 @@ export function WhySection({ why, stats }: { why: SiteContent["why"]; stats: Sit
                     <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full text-honey-500/15 transition-all duration-700 group-hover:rotate-90 group-hover:text-honey-500" aria-hidden>
                       <path d="M50 3 L91 26.5 L91 73.5 L50 97 L9 73.5 L9 26.5 Z" fill="currentColor" />
                     </svg>
-                    <Icon className="relative h-7 w-7 text-honey-300 transition-colors duration-500 group-hover:text-charcoal" />
+                    <FeatureIcon name={item.icon} className="relative h-7 w-7 text-honey-300 transition-colors duration-500 group-hover:text-charcoal" />
                   </div>
                   <h3 className="font-serif text-2xl text-cream">{t(item.title, locale)}</h3>
                   <p className="mt-3 leading-relaxed text-cream/60">{t(item.text, locale)}</p>
-                  <span className="absolute end-6 top-6 font-serif text-5xl text-cream/[0.06]">0{i + 1}</span>
+                  <span className="absolute end-6 top-6 font-serif text-5xl text-cream/[0.06]">{String(i + 1).padStart(2, "0")}</span>
                 </div>
               </StaggerItem>
             );
