@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { verifyPassword } from "@/lib/auth";
+import { isDbConfigured } from "@/lib/prisma";
 import { checkLocked, clearFailures, clientKey, registerFailure } from "@/lib/rate-limit";
 import { createSessionToken, SESSION_COOKIE, sessionCookieOptions } from "@/lib/session";
 
@@ -10,6 +11,13 @@ const schema = z.object({ password: z.string().min(1).max(200) });
 export async function POST(req: Request) {
   const parsed = schema.safeParse(await req.json().catch(() => null));
   if (!parsed.success) return NextResponse.json({ error: "Şifre gerekli." }, { status: 400 });
+
+  if (!isDbConfigured()) {
+    return NextResponse.json(
+      { error: "Veritabanı henüz ayarlanmamış. .env dosyasındaki DATABASE_URL ve DIRECT_URL değerlerini gerçek PostgreSQL bağlantınızla değiştirin." },
+      { status: 503 },
+    );
+  }
 
   try {
     const key = await clientKey("host-login");
@@ -36,6 +44,6 @@ export async function POST(req: Request) {
     return res;
   } catch (err) {
     console.error("[login]", err);
-    return NextResponse.json({ error: "Sunucu hatası. Veritabanı ve ortam değişkenlerini kontrol edin." }, { status: 500 });
+    return NextResponse.json({ error: "Veritabanına bağlanılamadı. DATABASE_URL değerini ve veritabanının açık olduğunu kontrol edin." }, { status: 500 });
   }
 }
