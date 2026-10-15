@@ -4,14 +4,15 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { Counter } from "@/components/motion/Counter";
 import { HexPattern } from "@/components/ui/HexPattern";
-import { ArrowIcon, FlaskIcon, LeafIcon, MountainIcon, TruckIcon } from "@/components/ui/Icons";
+import { ArrowIcon } from "@/components/ui/Icons";
+import { FeatureIcon } from "@/components/ui/FeatureIcons";
 import { ParallaxImage } from "@/components/about/ParallaxImage";
 import { getSiteContent } from "@/lib/data";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { localePath } from "@/lib/i18n/config";
 import { resolveLocale } from "@/lib/page-locale";
 import { pageMetadata } from "@/lib/seo";
-import { t } from "@/lib/utils";
+import { cn, t } from "@/lib/utils";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const locale = await resolveLocale(params);
@@ -25,15 +26,16 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
   const content = await getSiteContent();
   const a = content.about;
   const paragraphs = t(a.story, locale).split(/\n\s*\n/).filter(Boolean);
-  const icons = [LeafIcon, FlaskIcon, MountainIcon, TruckIcon];
+  const media = content.media;
+  const hasImages = !!(media.aboutMain || media.aboutSecond);
   const numberLocale = locale === "tr" ? "tr-TR" : locale === "ar" ? "ar-u-nu-latn" : "en-US";
 
   return (
     <>
       <PageHeader eyebrow={dict.about.title} title={t(a.title, locale)} subtitle={t(a.intro, locale)} />
 
-      <section className="container grid items-center gap-14 py-20 md:py-28 lg:grid-cols-2">
-        <ParallaxImage />
+      <section className={cn("container grid items-center gap-14 py-20 md:py-28", hasImages && "lg:grid-cols-2")}>
+        {hasImages && <ParallaxImage main={media.aboutMain} second={media.aboutSecond} />}
         <div>
           <Reveal>
             <div className="prose-honey space-y-0 text-lg leading-relaxed text-charcoal-600">
@@ -79,11 +81,10 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         </Reveal>
         <Stagger className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {content.why.items.map((item, i) => {
-            const Icon = icons[i % icons.length];
             return (
               <StaggerItem key={i}>
                 <div className="card h-full p-8">
-                  <Icon className="h-9 w-9 text-honey-600" />
+                  <FeatureIcon name={item.icon} className="h-9 w-9 text-honey-600" />
                   <h3 className="mt-6 font-serif text-2xl">{t(item.title, locale)}</h3>
                   <p className="mt-3 text-charcoal-500">{t(item.text, locale)}</p>
                 </div>
